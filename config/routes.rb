@@ -1,4 +1,8 @@
 Personal::Application.routes.draw do
+  resources :posts
+
+  resources :folios
+
   get "home/index"
 
   # The priority is based upon order of creation:
@@ -7,9 +11,11 @@ Personal::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-    match 'resume' => 'home#resume'
-    match 'cv' => 'home#cv'
-    match 'portfolio' => 'home#portfolio'
+    match 'index' => 'posts#index', :as => :index
+    match 'resume' => 'home#resume', :as => :resume
+    match 'cv' => 'home#cv', :as => :cv
+    match 'portfolio' => 'folios#index', :as => :portfolio
+    match 'contact' => 'home#contact', :as => :contact
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
