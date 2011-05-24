@@ -2,16 +2,36 @@
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
-  width:700px;
+  width:920px;
 }
 
 .header_holder {
   margin-bottom:40px;
+  min-width:900px;
+}
+
+.page_holder {
+  float:left;
+  width:700px;
+}
+
+.sidebar {
+  float:right;
+  width:160px;
+}
+
+.about {
+  font-size:8pt;
+  margin-bottom:20px;
+}
+
+.contact {
+  font-size:8pt;
+  margin-bottom:20px;
 }
 
 .entry_box {
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-bottom:40px;
 }
 
 .entry_date {
