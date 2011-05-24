@@ -1,12 +1,3 @@
-<table>
 <% @folios.each do |folio| %>
-  <tr>
-    <td><%= folio.name %></td>
-    <td><%= folio.url %></td>
-    <td><%= folio.description %></td>
-    <td><%= link_to 'Show', folio %></td>
-    <td><%= link_to 'Edit', edit_folio_path(folio) %></td>
-    <td><%= link_to 'Destroy', folio, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <%= render 'folios/folio', :folio => folio %>
 <% end %>
-</table>

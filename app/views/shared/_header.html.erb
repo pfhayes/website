@@ -1,10 +1,11 @@
 <h1 class="title">Patrick Hayes</h1>
 
 <div class="navigation">
-  <%= link_to "Home", index_url, :class => 'nav_link' %>
-  <%= link_to "Resume", resume_url, :class => 'nav_link' %>
-  <%= link_to "CV", cv_url, :class => 'nav_link' %>
-  <%= link_to "Portfolio", portfolio_url, :class => 'nav_link' %>
-  <%= link_to "Contact", contact_url, :class => 'nav_link' %>
+  <%= link_to "Home", index_url, :class => get_nav_class('index') %>
+  <%= link_to "About", about_url, :class => get_nav_class('about') %>
+  <%= link_to "Resume", resume_url, :class => get_nav_class('resume') %>
+  <%= link_to "CV", cv_url, :class => get_nav_class('cv') %>
+  <%= link_to "Portfolio", portfolio_url, :class => get_nav_class('portfolio') %>
+  <%= link_to "Contact", contact_url, :class => get_nav_class('contact') %>
 </div>
 
