@@ -28,6 +28,9 @@
 	font-size: 11pt;
 	font-weight: bold;
 }
+.displaynone {
+  display:none;
+}
 -->
 </style>
 </head>
@@ -37,7 +40,7 @@
     <div align="center" class="style1">
       <p align="center">
         <span class="style2">Patrick Hayes</span><br />
-        pfhayes (at) gmail (dot) com<br />
+        <%= raw obfuscate_email('pfhayes@gmail.com') %><br />
         <a href="http://patrickhay.es">http://patrickhay.es</a><br />
       </p>
     </div>
@@ -48,15 +51,15 @@
         <li>Commercial web design experience with PHP, Javascript, Ajax, Flex, and SQL</li>
         <li>Extremely high rate of productivity, and frequently completes projects ahead of schedule</li>
         <li>Strong interpersonal and communication skills, as developed through extensive leadership roles</li>
-        <li><strong>Programming</strong>: Python, C, C++, Java, PHP, Javascript, Lisp, Haskell, OCaml, Prolog, Actionscript</li>
-        <li><strong>Technologies</strong>: Android, BlackBerry OS, LAMP, Ajax, MySQL, CSS, XHTML, Django, Flex</li>
+        <li><strong>Programming</strong>: Python, C, C++, Java, PHP, Ruby, Javascript, Lisp, Haskell, OCaml, Prolog</li>
+        <li><strong>Technologies</strong>: Android, BlackBerry OS, Rails, LAMP, Ajax, MySQL, CSS, XHTML, Django, Flex</li>
         <li><strong>Fields</strong>: Machine Learning, Data Mining, Search, Distributed Systems, UI Design, Algorithm Design</li>
       </ul>
     <p class="style3">WORK EXPERIENCE</p>
     <p class="indent"><strong>Software Engineer</strong>, Bloomberg LP, New York, NY, May&ndash;August 2011</p>
     <ul>
       <li>Developed an application for monitoring implied volatility of stock indexes</li>
-      <li>Implemented an efficient, scalable caching system for handling extremely large datasets using C++</li>
+      <li>Implemented an efficient, scalable caching system for extremely large datasets using C++</li>
       <li>Designed an intuitive user interface for trend analysis using Javascript</li>
       </ul>
     <p class="indent"><strong>Research Engineer</strong>, ContextLogic, San Francisco, CA, September&ndash;December 2010</p>
