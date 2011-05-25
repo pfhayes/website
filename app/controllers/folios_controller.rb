@@ -1,7 +1,7 @@
 class FoliosController < ApplicationController
   # GET /folios
   # GET /folios.xml
-  def index
+  def portfolio
     @folios = Folio.all
 
     respond_to do |format|

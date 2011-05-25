@@ -24,7 +24,12 @@
   width:160px;
 }
 
+.nav_link_selected {
+  font-weight:bold;
+}
+
 .about {
+  margin-top:16px;
   font-size:8pt;
   margin-bottom:20px;
 }
@@ -35,7 +40,8 @@
 }
 
 .entry_box {
-  margin-bottom:40px;
+  margin-top:16px;
+  margin-bottom:34px;
 }
 
 .entry_date {

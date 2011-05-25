@@ -13,7 +13,7 @@ Personal::Application.routes.draw do
     match 'index' => 'posts#index', :as => :index
     match 'resume' => 'home#resume', :as => :resume
     match 'cv' => 'home#cv', :as => :cv
-    match 'portfolio' => 'folios#index', :as => :portfolio
+    match 'portfolio' => 'folios#portfolio', :as => :portfolio
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
