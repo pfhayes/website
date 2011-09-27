@@ -2,7 +2,7 @@ class FoliosController < ApplicationController
   # GET /folios
   # GET /folios.xml
   def portfolio
-    @folios = Folio.all
+    @folios = Folio.find(:all, :order => 'id')
 
     respond_to do |format|
       format.html # index.html.erb
