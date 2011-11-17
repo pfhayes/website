@@ -28,7 +28,6 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
-    addressable (2.2.6)
     arel (2.0.10)
     builder (2.1.2)
     erubis (2.6.6)
@@ -72,7 +71,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable
   rails (= 3.0.7)
   rest-client
   sqlite3
