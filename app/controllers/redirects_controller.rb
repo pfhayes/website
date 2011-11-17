@@ -13,7 +13,7 @@ class RedirectsController < ApplicationController
       redirect_to root_url and return
     end
 
-    code = params[:code] or generate_new_code(url)
+    code = params[:code] ? params[:code] : generate_new_code(url)
 
     # Does it exist already?
     @redirect = get_from_code(code)
@@ -41,7 +41,7 @@ class RedirectsController < ApplicationController
 
   # Use the low order bits of the MD5 hash, and base64/urlencode
   def generate_new_code(url)
-    digest = Digest::MD5.hexdigest(url).to_i(16) % 2**16
+    digest = Digest::MD5.hexdigest(url).to_i(16) % 2**32
     base64 = Base64.encode64([digest].pack("N"))
     return base64.sub(/==\n$/, '').sub('_', '-').sub('/', '+')
   end
