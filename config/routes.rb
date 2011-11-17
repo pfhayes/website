@@ -1,4 +1,5 @@
 Personal::Application.routes.draw do
+  resources :redirects
   resources :posts
   resources :folios
 
@@ -14,6 +15,10 @@ Personal::Application.routes.draw do
     match 'resume' => 'home#resume', :as => :resume
     match 'cv' => 'home#cv', :as => :cv
     match 'portfolio' => 'folios#portfolio', :as => :portfolio
+    match 'shorten' => 'redirects#create', :as => :shorten
+
+  # Wildcard match, for redirecting
+    match '*code' => 'redirects#redirect', :as => :redirect
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

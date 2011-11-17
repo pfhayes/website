@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524021737) do
+ActiveRecord::Schema.define(:version => 20111116214534) do
 
   create_table "folios", :force => true do |t|
     t.string   "name"
@@ -27,5 +27,15 @@ ActiveRecord::Schema.define(:version => 20110524021737) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "redirects", :force => true do |t|
+    t.string   "code"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "redirects", ["code"], :name => "index_redirects_on_code", :unique => true
+  add_index "redirects", ["created_at"], :name => "index_redirects_on_created_at"
 
 end
