@@ -47,18 +47,16 @@ class RedirectsController < ApplicationController
 
   # Let me know if people start using my URL shortener
   def notify_me(redirect) 
-    =begin
-    url = get_full_url(redirect)
-    message = "URL shortener was used to shorten #{redirect.url} to " +
-      "<a href=#{url}>#{url}</a>"
-
-    RestClient.post API_URL+"/messages", 
-      :from => "mailer@mailgun.net",
-      :to => "pfhayes@gmail.com",
-      :subject => "URL Shortener used",
-      :text => strip_tags(message),
-      :html => message
-    =end
+#    url = get_full_url(redirect)
+#    message = "URL shortener was used to shorten #{redirect.url} to " +
+#      "<a href=#{url}>#{url}</a>"
+#
+#    RestClient.post API_URL+"/messages", 
+#      :from => "mailer@mailgun.net",
+#      :to => "pfhayes@gmail.com",
+#      :subject => "URL Shortener used",
+#      :text => strip_tags(message),
+#      :html => message
   end
 
   # Use the low order bits of the MD5 hash, and base64/urlencode
