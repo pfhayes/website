@@ -1,6 +1,7 @@
 require 'base64'
 require 'digest/md5'
 require 'rest_client'
+require 'uri'
 
 API_KEY = ENV['MAILGUN_API_KEY']
 API_URL = "https://api:#{API_KEY}@api.mailgun.net/v2/mailgun.net"
@@ -12,17 +13,29 @@ class RedirectsController < ApplicationController
   end
 
   def create
+    # Validate url
     url = params[:url]
     if not url
       redirect_to root_url and return
     end
+    if url !~ /^#{URI::regexp}$/
+      fail 'Invalid url' and return
+    end
 
+    # Validate code
     code = params[:code] ? params[:code] : generate_new_code(url)
+    if code !~ /^[0-9a-zA-Z\-+_]*$/
+      fail 'Invalid code' and return
+    end
 
     # Does it exist already?
     @redirect = get_from_code(code)
     if @redirect
-      follow @redirect and return
+      if @redirect.url != url
+        fail 'Code is already in use' and return
+      else
+        follow @redirect and return
+      end
     end
 
     # Since this is for personal use, throttle the number of created
@@ -36,16 +49,15 @@ class RedirectsController < ApplicationController
       
     # Create the redirect
     @redirect = Redirect.new(:url => url, :code => code)
-    if @redirect
-      @redirect.save()
+    if @redirect and @redirect.save()
       notify_me(@redirect)
-      follow @redirect
+      follow @redirect and return
     else
       fail 'Failed to create redirect' and return
     end
   end
 
-  # Let me know if people start using my URL shortener
+  # Let me know if villains start using my URL shortener
   def notify_me(redirect) 
 #    url = get_full_url(redirect)
 #    message = "URL shortener was used to shorten #{redirect.url} to " +
