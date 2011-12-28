@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116214534) do
+ActiveRecord::Schema.define(:version => 20111228220945) do
 
   create_table "folios", :force => true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20111116214534) do
 
   create_table "redirects", :force => true do |t|
     t.string   "code"
-    t.string   "url"
+    t.text     "url",        :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
