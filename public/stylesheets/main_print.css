@@ -1,0 +1,55 @@
+.body {
+  background-color:#F5F5FF;
+  color:#101010;
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+.content_holder {
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  width:920px;
+}
+
+.header_holder {
+  margin-bottom:40px;
+  min-width:900px;
+}
+
+.page_holder {
+  float:left;
+  width:700px;
+}
+
+.sidebar {
+  float:right;
+  width:160px;
+}
+
+.nav_link_selected {
+  font-weight:bold;
+}
+
+.about {
+  margin-top:16px;
+  font-size:8pt;
+  margin-bottom:20px;
+}
+
+.contact {
+  font-size:8pt;
+  margin-bottom:20px;
+}
+
+.displaynone {
+  display:none;
+}
