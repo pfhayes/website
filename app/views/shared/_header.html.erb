@@ -1,5 +1,10 @@
 <h1 class="title">Patrick Hayes</h1>
 
+<div class="header_contact">
+  <%= raw obfuscate_email('pfhayes@gmail.com') %><br/>
+  <%= link_to root_url, root_url %>
+</div>
+
 <div class="navigation">
   <%=# link_to "Home", index_url, :class => get_nav_class('index')
   %>
@@ -7,4 +12,3 @@
   <%= link_to "CV", cv_url, :class => get_nav_class('cv') %>
   <%= link_to "Portfolio", portfolio_url, :class => get_nav_class('portfolio') %>
 </div>
-

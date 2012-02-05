@@ -16,6 +16,9 @@
 	font-size: 10.5pt;
 	font-weight: bold;
 }
+.resume_footer {
+  display:none;
+}
 .displaynone {
   display:none;
 }
