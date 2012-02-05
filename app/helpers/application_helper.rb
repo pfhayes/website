@@ -14,4 +14,9 @@ def obfuscate_email(email)
     email.slice(email.index('@') + 2, email.length)
 end
 
+def cust_stylesheet_link(sheet_name) 
+  return stylesheet_link_tag(sheet_name) + 
+    stylesheet_link_tag(sheet_name + '_print', :media => 'print')
+end
+
 end
