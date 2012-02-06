@@ -1,20 +1,21 @@
 .holder {
   width:700px;
 }
-.indent {
+.resume_entry_title {
   margin-left:13px;
 }
-.style1 {
-	font-size: 10pt;
-	text-align: left;
+.resume_entry_name {
+  font-weight: bold;
 }
-.style2 {
-	font-size: 15pt;
-	font-weight: bold;
-}
-.style3 {
+.resume_section_heading { 
 	font-size: 10.5pt;
 	font-weight: bold;
+  text-transform:uppercase;
+}
+.resume_subsection_heading {
+	font-size: 10.5pt;
+	font-weight: bold;
+  margin-left: 13px;
 }
 .displaynone {
   display:none;

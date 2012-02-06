@@ -1,7 +1,7 @@
 <% content_for :stylesheet do %>resume<% end %>
 
 <div class="holder">
-    <div align="left" class="style1">
+  <div class="resume_content">
     <%= render 'home/skills', :full => false, :personal => true %>
     <%= render 'home/work', :full => false %>
     <%= render 'home/open_source', :full => false %>
@@ -10,7 +10,7 @@
   </div>
   <br />
   <div class="resume_footer">
-    <p class="indent style3">For the expanded version of this resume, visit <%= link_to cv_url, cv_url %></p>
-    <p class="indent style3">To see some of my projects, visit <%= link_to portfolio_url, portfolio_url %></p>
+    <p class="resume_subsection_heading">For the expanded version of this resume, visit <%= link_to cv_url, cv_url %></p>
+    <p class="resume_subsection_heading">To see some of my projects, visit <%= link_to portfolio_url, portfolio_url %></p>
   </div>
 </div>

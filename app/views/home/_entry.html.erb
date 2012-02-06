@@ -1,0 +1,16 @@
+<%
+  organization ||= nil
+  location ||= nil
+  start_date ||= nil
+  end_date ||= nil
+  bullets ||= []
+  show_bullets ||= true if local_assigns[:show_bullets].nil?
+%>
+<p class="resume_entry_title"><span class="resume_entry_name"><%= name %></span><% if organization %>, <%= organization %><% end %><% if location %>, <%= location %><% end %><% if (end_date) %><% if (start_date) %>, <%= start_date %>&ndash;<%= end_date %><% else %>, <%= end_date %><% end %><% end %></p>
+<% if bullets and show_bullets %>
+  <ul class="resume_entry_bullets">
+    <% bullets.each do |bullet| %>
+      <li class="resume_entry_bullet"><%= bullet %></li>
+    <% end %>
+  </ul>
+<% end %>

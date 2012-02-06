@@ -1,24 +1,52 @@
- <p class="style3">ACTIVITIES</p>
-  <p class="indent"><strong>Federation Orientation Committee Member</strong>, University of Waterloo, Waterloo, ON, 2010</p>
-  <ul>
-    <li>Worked with a team of three students to plan Math Orientation Week 2010</li>
-    <li>Organized and ran events for 1500 students spanning one week in September</li>
-    <li>Contributed over 500 hours of volunteer involvement to planning Orientation Week</li>
-  </ul>
+ <p class="resume_section_heading">Activities</p>
+  <%= render 'home/entry',
+    :name => 'Federation Orientation Committee Member',
+    :organization => 'University of Waterloo',
+    :location => 'Waterloo, ON',
+    :start_date => nil,
+    :end_date => '2010',
+    :show_bullets => true,
+    :bullets => [
+      'Worked with a team of three students to plan Math Orientation Week 2010',
+      'Organized and ran events for 1500 students spanning one week in September',
+      'Contributed over 500 hours of volunteer involvement to planning Orientation Week',
+    ]
+  %>
   <% if full %>
-  <p class="indent"><strong>Orientation Week Head Leader</strong>, University of Waterloo, Waterloo, ON, 2008&ndash;2009, 2010&ndash;2011</p>
-  <ul>
-    <li>Gained extensive leadership experience by leading a group of over 200 first year students</li>
-    <li>Directed a group of ten other orientation leaders</li>
-    <li>Created and maintained a friendly, co-operative environment</li>
-  </ul>
-  <p class="indent"><strong>Undergraduate Teaching Assistant</strong>, University of Waterloo, Waterloo, ON, 2009</p>
-  <ul>
-    <li>Tutored undergraduate students in Calculus</li>
-    <li>Marked weekly assignments</li>
-  </ul>
-  <p class="indent"><strong>Mathematics Society First-Year-At-Large</strong>, University of Waterloo, Waterloo, ON, 2007</p>
-  <ul>
-    <li>Elected by the first-year Math student body to represent them in student government</li>
-  </ul>
+  <%= render 'home/entry',
+    :name => 'Orientation Week Head Leader',
+    :organization => 'University of Waterloo',
+    :location => 'Waterloo, ON',
+    :start_date => '2008',
+    :end_date => '2011',
+    :show_bullets => true,
+    :bullets => [
+      'Gained extensive leadership experience by leading a group of over 200 first year students',
+      'Directed a group of ten other orientation leaders',
+      'Created and maintained a friendly, co-operative environment',
+    ]
+  %>
+  <%= render 'home/entry',
+    :name => 'Undergraduate Teaching Assistant',
+    :organization => 'University of Waterloo',
+    :location => 'Waterloo, ON',
+    :start_date => 'January',
+    :end_date => 'December 2009',
+    :show_bullets => true,
+    :bullets => [
+      'Tutored undergraduate students in Calculus',
+      'Marked weekly assignments',
+    ]
+  %>
+  <%= render 'home/entry',
+    :name => 'Mathematics Society First-Year-At-Large',
+    :organization => 'University of Waterloo',
+    :location => 'Waterloo, ON',
+    :start_date => 'September',
+    :end_date => 'December 2007',
+    :show_bullets => true,
+    :bullets => [
+      'Elected by the first-year Math student body to represent them in student government',
+    ]
+  %>
   <% end %>
