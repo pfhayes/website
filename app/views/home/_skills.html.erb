@@ -1,0 +1,57 @@
+<p class="style3">TECHNICAL SKILLS</p>
+<ul>
+  <% if (personal) %>
+    <li>Over two years of experience with commercial web development and systems programming</li>
+    <li>Extremely high rate of productivity, and frequently completes projects ahead of schedule</li>
+    <li>Strong interpersonal and communication skills, as developed through extensive leadership roles</li>
+  <% end %>
+  <%
+    programming = [
+      ['Python', false],
+      ['C', false],
+      ['C++', false],
+      ['Java', false],
+      ['PHP', false],
+      ['Ruby', false],
+      ['Javascript', false],
+      ['Lisp', false],
+      ['Haskell', false],
+      ['OCaml', false],
+      ['Prolog', false],
+      ['Actionscript', true],
+      ['Visual Basic', true],
+    ]
+    techs = [
+      ['Android', false],
+      ['BlackBerry', false],
+      ['PhoneGap', true],
+      ['Rails', false],
+      ['LAMP', false],
+      ['Ajax', false],
+      ['MySQL', false],
+      ['Heroku', true],
+      ['Amazon EC2', true],
+      ['CSS', false],
+      ['HTML5', false],
+      ['Django', false],
+      ['Flex', true],
+      ['Google Perftools', true],
+    ]
+    fields = [
+      ['Machine Learning', false],
+      ['Data Mining', false],
+      ['Search', false],
+      ['Distributed Systems', false],
+      ['UI Design', false],
+      ['Algorithm Design', false],
+      ['Systems Profiling', true],
+    ]
+
+    def reduce(arr)
+      arr.find_all{|x| x[1] == false or $full == true}.map{|x| x[0]}.join(', ')
+    end
+  %>
+  <li><strong>Programming</strong>: <%= reduce(programming) %></li>
+  <li><strong>Technologies</strong>: <%= reduce(techs) %></li>
+  <li><strong>Fields</strong>: <%= reduce(fields) %></li>
+</ul>

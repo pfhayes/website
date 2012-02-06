@@ -2,92 +2,10 @@
 
 <div class="holder">
   <div align="left" class="style1">
-    <p class="style3">EDUCATION</p>
-    <p class="indent"><strong>Candidate for Bachelor of Mathematics</strong>, Computer Science/Pure Mathematics Double Honours, Co-op Program, University of Waterloo, Waterloo, ON, 2007&ndash;present</p>
-    <p class="indent style3">Awards</p>
-    <ul>
-      <li>Cumulative average: 90%; Major average: 93%</li>
-      <li><em>Dean&#39;s Honours List</em>, University of Waterloo, 2007&ndash;2011</li>
-      <li><em>St. Jerome&#39;s University President&#39;s Scholarship</em>, University of Waterloo, 2007&ndash;2009</li>
-      <li><em>Excellent Academic Standing</em>, University of Waterloo, 2007&ndash;2011</li>
-    </ul>
-    <p class="indent style3">Relevant Coursework</p>
-    <ul>
-      <li>Machine Learning; Artificial Intelligence; Algorithm Design and Analysis; Database Systems Implementation; Principles of Programming Languages; Operating Systems; Theory of Computation</li>
-      <li>Readings in Pure Mathematics; Algebraic Number Theory; Measure Theory and Fourier Analysis; Real Analysis; Complex Analysis; Ring/Group Theory; Elementary Differential Geometry</li>
-      <li>Communications in Math and Computer Science</li>
-    </ul>
-    <p class="style3">OPEN SOURCE CONTRIBUTIONS</p>
-    <p class="indent"><strong>Wikipedia/Wiktionary Mobile App</strong>, Wikimedia Foundation, Jan&ndash;Apr 2012</p>
-      <ul>
-        <li>Used PhoneGap to develop a Wiktionary mobile application for Android/iOS</li>
-        <li>Contributed bugfixes and improvements to Wikipedia mobile application</li>
-        <li>Worked on a remote team with 3 undergraduate students from Canadian schools</li>
-      </ul>
-    <p class="style3">WORK EXPERIENCE</p>
-    <p class="indent"><strong>Financial Software Developer</strong>, Bloomberg LP, New York, NY, May&ndash;August 2011</p>
-    <ul>
-      <li>Developed an application for monitoring volatility of financial securities</li>
-      <li>Implemented an efficient, scalable caching system for handling extremely large datasets using C++</li>
-      <li>Designed an intuitive user interface for trend analysis using Javascript</li>
-      </ul>
-    <p class="indent"><strong>Research Engineer</strong>, ContextLogic, San Francisco, CA, September&ndash;December 2010</p>
-    <ul>
-      <li>Developed a topical analysis application using sophisticated machine learning methods</li>
-      <li>Produced highly optimized C++ to improve performance in existing technologies by up to 20x</li>
-      <li>Designed a distributed indexer using Python and C that performed scalable data mining</li>
-      </ul>
-    <p class="indent"><strong>Software Engineer</strong>, Facebook, Palo Alto, CA, January&ndash;April 2010</p>
-    <ul>
-      <li>Developed a complete, scalable, distributed search application using PHP, Java and SQL</li>
-      <li>Leveraged open source technologies to build a robust, efficient, and extensible search framework</li>
-      <li>Used Javascript and Ajax to develop an engaging user experience</li>
-    </ul>
-    <p class="indent"><strong>User Interface Developer</strong>, Sybase iAnywhere, Waterloo, ON, May&ndash;August 2009</p>
-    <ul>
-      <li>Developed user interface functionality for commercial database software using Flex/Actionscript</li>
-      <li>Analyzed and implemented performance-critical web server code in Java and SQL</li>
-      <li>Designed a mobile version of an existing web application using Java, PHP, and SQL</li>
-      </ul>
-    <p class="indent"><strong>Automation Tools Developer</strong>, Research In Motion, Waterloo, ON, September&ndash;December 2008</p>
-    <ul>
-      <li>Created and improved test suites for BlackBerry OS and Android using Java, C, and Python</li>
-      <li>Developed a server for hosting and displaying test results using Django</li>
-      <li>Completed many high priority assignments to ship products under tight deadlines</li>
-      </ul>
-    <p class="indent"><strong>Software Test Associate</strong>, Research In Motion, Waterloo, ON, January&ndash;April 2008</p>
-    <ul>
-      <li>Implemented new test procedures and expanded on existing testing frameworks</li>
-      <li>Developed test scripts in Python for testing hardware functionality of devices</li>
-      <li>Created and maintained department's corporate website using Wiki software</li>
-      </ul>
-   <p class="style3">TECHNICAL SKILLS</p>
-    <ul>
-      <li><strong>Programming</strong>: Python, C, C++, Java, PHP, Ruby, Javascript, Lisp, Haskell, OCaml, Prolog, Actionscript, Visual Basic</li>
-      <li><strong>Technologies</strong>: Android, BlackBerry OS, PhoneGap, Rails, LAMP, Ajax, MySQL, Heroku, Amazon EC2, CSS, XHTML, Django, Flex, Google Perftools</li>
-      <li><strong>Fields</strong>: Machine Learning, Data Mining, Search, Distributed Systems, User Interface Design, Algorithm Design, Systems Profiling</li>
-    </ul>
-   <p class="style3">ACTIVITIES</p>
-    <p class="indent"><strong>Federation Orientation Committee Member</strong>, University of Waterloo, Waterloo, ON, 2010</p>
-    <ul>
-      <li>Worked with a team of three students to plan Math Orientation Week 2010</li>
-      <li>Organized and ran events for 1500 students spanning one week in September</li>
-      <li>Contributed over 500 hours of volunteer involvement to planning Orientation Week</li>
-    </ul>
-    <p class="indent"><strong>Orientation Week Head Leader</strong>, University of Waterloo, Waterloo, ON, 2008&ndash;2009, 2010&ndash;2011</p>
-    <ul>
-      <li>Gained extensive leadership experience by leading a group of over 200 first year students</li>
-      <li>Directed a group of ten other orientation leaders</li>
-      <li>Created and maintained a friendly, co-operative environment</li>
-    </ul>
-    <p class="indent"><strong>Undergraduate Teaching Assistant</strong>, University of Waterloo, Waterloo, ON, 2009</p>
-    <ul>
-      <li>Tutored undergraduate students in Calculus</li>
-      <li>Marked weekly assignments</li>
-    </ul>
-    <p class="indent"><strong>Mathematics Society First-Year-At-Large</strong>, University of Waterloo, Waterloo, ON, 2007</p>
-    <ul>
-      <li>Elected by the first-year Math student body to represent them in student government</li>
-    </ul>
+    <%= render 'home/education', :full => true %>
+    <%= render 'home/open_source', :full => true %>
+    <%= render 'home/work', :full => true %>
+    <%= render 'home/skills', :full => true, :personal => false %>
+    <%= render 'home/activities', :full => true %>
   </div>
 </div>
