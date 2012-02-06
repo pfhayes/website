@@ -65,7 +65,7 @@ class RedirectsController < ApplicationController
 #
 #    RestClient.post API_URL+"/messages", 
 #      :from => "mailer@mailgun.net",
-#      :to => "pfhayes@gmail.com",
+#      :to => MY_EMAIL,
 #      :subject => "URL Shortener used",
 #      :text => strip_tags(message),
 #      :html => message
