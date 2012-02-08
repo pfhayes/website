@@ -26,6 +26,7 @@
       ['BlackBerry', false],
       ['PhoneGap', true],
       ['Rails', false],
+      ['Django', false],
       ['LAMP', false],
       ['Ajax', false],
       ['MySQL', false],
@@ -33,7 +34,10 @@
       ['Amazon EC2', true],
       ['CSS', false],
       ['HTML5', false],
-      ['Django', false],
+      ['Git', false],
+      ['SVN', true],
+      ['Bash', true],
+      ['Zsh', true],
       ['Flex', true],
       ['Google Perftools', true],
     ]
@@ -47,11 +51,11 @@
       ['Systems Profiling', true],
     ]
 
-    def reduce(arr)
-      arr.find_all{|x| x[1] == false or $full == true}.map{|x| x[0]}.join(', ')
+    def reduce(arr, full)
+      arr.find_all{|x| x[1] == false or full == true}.map{|x| x[0]}.join(', ')
     end
   %>
-  <li><strong>Programming</strong>: <%= reduce(programming) %></li>
-  <li><strong>Technologies</strong>: <%= reduce(techs) %></li>
-  <li><strong>Fields</strong>: <%= reduce(fields) %></li>
+  <li><strong>Programming</strong>: <%= reduce(programming, full) %></li>
+  <li><strong>Technologies</strong>: <%= reduce(techs, full) %></li>
+  <li><strong>Fields</strong>: <%= reduce(fields, full) %></li>
 </ul>
