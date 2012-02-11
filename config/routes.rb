@@ -1,17 +1,10 @@
 Personal::Application.routes.draw do
-  resources :redirects
-  resources :posts
-  resources :folios
-
-  get "home/index"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-    match 'index' => 'posts#index', :as => :index
     match 'resume' => 'home#resume', :as => :resume
     match 'cv' => 'home#cv', :as => :cv
     match 'portfolio' => 'folios#portfolio', :as => :portfolio
