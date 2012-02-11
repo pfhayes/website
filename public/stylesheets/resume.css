@@ -8,6 +8,7 @@
   font-weight: bold;
 }
 .resume_section_heading { 
+  margin-top:0px;
 	font-size: 10.5pt;
 	font-weight: bold;
   text-transform:uppercase;

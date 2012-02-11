@@ -14,7 +14,6 @@ a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
 .content_holder {
-  margin-top:20px;
   margin-left:auto;
   margin-right:auto;
   width:920px;
@@ -25,9 +24,18 @@ a:hover { color: #fff; background-color:#000; }
   min-width:900px;
 }
 
+.body_holder {
+  width:900px;
+}
+
 .page_holder {
   float:left;
   width:700px;
+}
+
+.sidebar {
+  float:right;
+  width:160px;
 }
 
 .navigation {
@@ -37,17 +45,11 @@ a:hover { color: #fff; background-color:#000; }
   display:none;
 }
 
-.sidebar {
-  float:right;
-  width:160px;
-}
-
 .nav_link_selected {
   font-weight:bold;
 }
 
 .about {
-  margin-top:16px;
   font-size:8pt;
   margin-bottom:20px;
 }
@@ -57,6 +59,11 @@ a:hover { color: #fff; background-color:#000; }
   margin-bottom:20px;
 }
 
+.footer {
+  clear:both;
+}
+
 .displaynone {
   display:none;
 }
+

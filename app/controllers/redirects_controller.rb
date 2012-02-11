@@ -3,9 +3,6 @@ require 'digest/md5'
 require 'rest_client'
 require 'uri'
 
-API_KEY = ENV['MAILGUN_API_KEY']
-API_URL = "https://api:#{API_KEY}@api.mailgun.net/v2/mailgun.net"
-    
 class RedirectsController < ApplicationController
   def redirect
     @redirect = get_from_code(params[:code])

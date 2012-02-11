@@ -15,16 +15,18 @@
 <%= render "shared/header" %>
 </div>
 
-<div class="page_holder">
-<%= yield %>
+<div class="body_holder">
+  <div class="page_holder">
+    <%= yield %>
+  </div>
+  <div class="sidebar">
+    <%= render "home/about" %>
+    <%= render "home/contact" %>
+  </div>
 </div>
-<div class="sidebar">
-<%= render "home/about" %>
-<%= render "home/contact" %>
 </div>
 
 <%= render "shared/footer" %>
-</div>
 
 </body>
 </html>
