@@ -1,17 +1,32 @@
+<div class="resume_section">
 <p class="resume_section_heading">Education</p>
-<p class="resume_entry_title"><span class="resume_entry_name">Candidate for Bachelor of Mathematics</span>, Computer Science/Pure Mathematics Double Honours, Co-op Program, University of Waterloo, Waterloo, ON, 2007&ndash;2012</p>
-<p class="resume_subsection_heading">Awards</p>
-<ul>
-  <li>Cumulative average: 90%; Major average: 94%</li>
-  <li><em>Dean&#39;s Honours List</em>, University of Waterloo, 2007&ndash;2011</li>
-  <li><em>St. Jerome&#39;s University President&#39;s Scholarship</em>, University of Waterloo, 2007&ndash;2009</li>
-  <li><em>Excellent Academic Standing</em>, University of Waterloo, 2007&ndash;2011</li>
-</ul>
-<p class="resume_subsection_heading">Relevant Coursework</p>
-<ul>
-  <li>Machine Learning; Artificial Intelligence; Algorithm Design and Analysis; Database Systems Implementation; Principles of Programming Languages;
-    Operating Systems<% if (full) %>; Theory of Computation<% end %>
-  </li>
-  <li>Readings in Pure Mathematics; Algebraic Number Theory; Measure Theory and Fourier Analysis; Real Analysis; Complex Analysis; Ring/Group Theory; Elementary Differential Geometry</li>
-  <li>Communications in Math and Computer Science, Macroeconomics</li>
-</ul>
+  <%= render 'home/entry',
+    :name => 'Candidate for Bachelor of Mathematics',
+    :department => 'Computer Science/Pure Mathematics Double Honours',
+    :organization => 'University of Waterloo',
+    :location => 'Waterloo, ON',
+    :start_date => '2007',
+    :end_date => '2012',
+    :show_bullets => true,
+    :bullets => []
+  %>
+  <%= render 'home/entry',
+    :name => 'Awards',
+    :show_bullets => true,
+    :bullets => [
+      'Cumulative average: 90%; Major average: 94%',
+      '<em>Dean&#39;s Honours List</em>, University of Waterloo, 2007&ndash;2011',
+      '<em>St. Jerome&#39;s University President&#39;s Scholarship</em>, University of Waterloo, 2007&ndash;2009',
+      '<em>Excellent Academic Standing</em>, University of Waterloo, 2007&ndash;2011'
+    ]
+    %>
+  <%= render 'home/entry',
+    :name => 'Relevant Coursework',
+    :show_bullets => true,
+    :bullets => [
+      'Machine Learning; Artificial Intelligence; Algorithm Design; Database Systems Implementation; Principles of Programming Languages; Operating Systems; Theory of Computation',
+      'Readings in Pure Mathematics; Algebraic Number Theory; Measure Theory and Fourier Analysis; Real Analysis; Complex Analysis; Ring/Group Theory; Elementary Differential Geometry',
+      'Communications in Math and Computer Science, Macroeconomics'
+    ]
+  %>
+</div>
