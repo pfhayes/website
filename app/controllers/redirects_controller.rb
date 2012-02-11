@@ -6,14 +6,18 @@ require 'uri'
 class RedirectsController < ApplicationController
   def redirect
     @redirect = get_from_code(params[:code])
-    redirect_to @redirect ? @redirect.url : root_url
+    if @redirect
+      redirect_to @redirect.url
+    else
+      render 'home/error_404'
+    end
   end
 
   def create
     # Validate url
     url = params[:url]
     if not url
-      redirect_to root_url and return
+      render 'home/error_404' and return
     end
     if url !~ /^#{URI::regexp}$/
       fail 'Invalid url' and return
