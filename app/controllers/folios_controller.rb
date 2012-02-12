@@ -1,7 +1,7 @@
 class FoliosController < ApplicationController
   # GET /portfolio
   def portfolio
-    @folios = Folio.find(:all, :order => 'id')
+    @folios = Folio.find(:all, :order => 'updated_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb

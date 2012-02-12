@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228220945) do
+ActiveRecord::Schema.define(:version => 20120212182118) do
 
   create_table "folios", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20111228220945) do
     t.datetime "updated_at"
     t.text     "image"
   end
+
+  add_index "folios", ["updated_at"], :name => "index_folios_on_updated_at"
 
   create_table "posts", :force => true do |t|
     t.text     "title"
