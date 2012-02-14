@@ -10,6 +10,11 @@ body, p, ol, ul, td {
 }
 
 a { color: #000; }
+.title_link {
+  color:#101010;
+  font-weight:bold;
+  text-decoration:none;
+}
 
 .content_holder {
   margin-left:auto;

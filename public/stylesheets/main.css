@@ -12,6 +12,23 @@ body, p, ol, ul, td {
 a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
+.title_link {
+  color:#101010;
+  font-weight:bold;
+  text-decoration:none;
+}
+.title_link:visited {
+  color:#101010;
+  font-weight:bold;
+  text-decoration:none;
+}
+.title_link:hover {
+  background-color:#F5F5FF;
+  color:#101010;
+  font-weight:bold;
+  text-decoration:none;
+}
+
 
 .content_holder {
   margin-left:auto;
