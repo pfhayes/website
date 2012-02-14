@@ -9,7 +9,7 @@ class RedirectsController < ApplicationController
     if @redirect
       redirect_to @redirect.url
     else
-      render 'home/error_404'
+      render_404 and return
     end
   end
 
@@ -17,7 +17,7 @@ class RedirectsController < ApplicationController
     # Validate url
     url = params[:url]
     if not url
-      render 'home/error_404' and return
+      render_404 and return
     end
     if url !~ /^#{URI::regexp}$/
       fail 'Invalid url' and return

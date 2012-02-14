@@ -23,5 +23,4 @@ def cust_stylesheet_link(sheet_name)
     stylesheet_link_tag(sheet_name + '_print', :media => 'print')
 end
 
-
 end

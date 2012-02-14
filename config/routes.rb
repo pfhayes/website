@@ -22,7 +22,7 @@ Personal::Application.routes.draw do
     root :to => "home#resume"
 
   # Nothing left, route to 404 page
-    match '*wild' => 'home#error_404', :as => :error_404
+    match '*wild' => 'application#render_404', :as => :error_404
 
   # See how all your routes lay out with "rake routes"
 end
