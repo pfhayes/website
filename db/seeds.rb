@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Redirect.create([{ :code => 'fb', :url => 'https://www.facebook.com/pfhayes' },
+                 { :code => 'li', :url => 'http://www.linkedin.com/in/pfjhayes' },
+                 { :code => 'gh', :url => 'https://www.github.com/pfhayes' }])
