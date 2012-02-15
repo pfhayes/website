@@ -41,6 +41,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    newrelic_rpm (3.3.1)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -77,6 +78,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   rails (= 3.0.7)
   rest-client
   sqlite3

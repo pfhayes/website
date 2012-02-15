@@ -8,6 +8,7 @@ gem 'thin'
 
 gem 'sqlite3'
 gem 'rest-client'
+gem 'newrelic_rpm'
 
 # Use unicorn as the web server
 # gem 'unicorn'
