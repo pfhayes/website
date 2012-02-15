@@ -1,8 +1,8 @@
 class CreateRedirects < ActiveRecord::Migration
   def self.up
     create_table :redirects do |t|
-      t.string :code
-      t.string :url
+      t.text :code, :limit => nil
+      t.text :url, :limit => nil
       t.timestamps
     end
     add_index :redirects, :code, :unique => true

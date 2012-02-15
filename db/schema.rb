@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,9 +17,8 @@ ActiveRecord::Schema.define(:version => 20120212182118) do
     t.string   "name"
     t.text     "url"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "image"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "folios", ["updated_at"], :name => "index_folios_on_updated_at"
@@ -26,15 +26,15 @@ ActiveRecord::Schema.define(:version => 20120212182118) do
   create_table "posts", :force => true do |t|
     t.text     "title"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "redirects", :force => true do |t|
-    t.string   "code"
-    t.text     "url",        :limit => 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "code"
+    t.text     "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "redirects", ["code"], :name => "index_redirects_on_code", :unique => true
