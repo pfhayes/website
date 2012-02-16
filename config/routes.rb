@@ -21,7 +21,7 @@ Personal::Application.routes.draw do
   # just remember to delete public/index.html.
     root :to => "home#resume"
 
-  # Nothing left, route to 404 page
+  # Nothing left, route to error page
     match '*wild' => 'application#render_404', :as => :error_404
 
   # See how all your routes lay out with "rake routes"
