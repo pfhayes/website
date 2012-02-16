@@ -1,5 +1,5 @@
 #!/bin/zsh
 
 pushd ~/dev/web/personal
-curl http://localhost:3000/bad/url/so/bad >public/404.html
+curl http://localhost:3000/bad/url/so/bad | sed 's/localhost:3000/patrickhay.es/g' >public/404.html
 popd
