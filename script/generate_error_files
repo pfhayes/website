@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+pushd ~/dev/web/personal
+curl http://localhost:3000/bad/url/so/bad >public/404.html
+popd
