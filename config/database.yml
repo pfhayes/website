@@ -12,11 +12,13 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: personal_development
   pool: 5
-  timeout: 5000
+  username: patrick
+  password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

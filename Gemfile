@@ -10,9 +10,9 @@ gem 'pg'
 gem 'rest-client'
 gem 'newrelic_rpm'
 
-group :development do
-  gem 'sqlite3'
-end
+#group :development do
+#  gem 'sqlite3'
+#end
 
 # Use unicorn as the web server
 # gem 'unicorn'
