@@ -4,11 +4,18 @@
   location ||= nil
   start_date ||= nil
   end_date ||= nil
+  link ||= nil
   bullets ||= []
   show_bullets ||= true if local_assigns[:show_bullets].nil?
 %>
 <div class="resume_entry">
-<p class="resume_entry_title"><span class="resume_entry_name"><%= name %></span><%
+  <p class="resume_entry_title">
+  <span class="resume_entry_name"><%= if link
+    link_to name, link
+  else
+    name
+  end
+  %></span><%
   if organization %>, <%= organization %><% end %><%
   if department %>, <%= department %><% end %><%
   if location %>, <%= location %><% end %><%

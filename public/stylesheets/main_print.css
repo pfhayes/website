@@ -9,7 +9,10 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
-a { color: #000; }
+a { 
+  color: #000;
+  text-decoration: none;
+}
 .title_link {
   color:#101010;
   font-weight:bold;
