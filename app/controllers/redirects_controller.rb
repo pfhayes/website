@@ -42,7 +42,7 @@ class RedirectsController < ApplicationController
     # Since this is for personal use, throttle the number of created
     # redirects
     threshold_in_hours = 1
-    count_per_threshold = 3
+    count_per_threshold = 10
     old_redirect = Redirect.order("created_at DESC").limit(count_per_threshold).last
     latest_time = old_redirect ? old_redirect.created_at : (threshold_in_hours+1).hours.ago
     if (Time.now - latest_time) < threshold_in_hours.hours
