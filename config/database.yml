@@ -12,7 +12,7 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-production:
+development:
   adapter: postgresql
   encoding: unicode
   database: personal_development
