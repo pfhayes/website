@@ -8,7 +8,7 @@ Personal::Application.routes.draw do
     match 'resume' => 'home#resume', :as => :resume
     match 'cv' => 'home#cv', :as => :cv
     match 'portfolio' => 'folios#portfolio', :as => :portfolio
-    match 'shorten' => 'redirects#create', :as => :shorten
+    post 'shorten' => 'redirects#create', :as => :shorten
 
   # redirecting match
     match ':code(.:format)' => 'redirects#redirect', :as => :redirect

@@ -13,7 +13,21 @@ class RedirectsController < ApplicationController
     end
   end
 
+  def authenticate(username, plaintext_pw)
+    user = RedirectUser.find(:first, :conditions => [ 'username = ?', username])
+    if user and Digest::SHA256.hexdigest(plaintext_pw) == user.hashed_pw
+      return true
+    else
+      return false
+    end
+  end
+
   def create
+    # Authenticate
+    if not authenticate_with_http_basic { |username, plaintext_pw| authenticate(username, plaintext_pw) }
+      request_http_basic_authentication and return
+    end
+  
     # Validate url
     url = params[:url]
     if not url
@@ -57,20 +71,6 @@ class RedirectsController < ApplicationController
     else
       fail 'Failed to create redirect' and return
     end
-  end
-
-  # Let me know if villains start using my URL shortener
-  def notify_me(redirect) 
-#    url = get_full_url(redirect)
-#    message = "URL shortener was used to shorten #{redirect.url} to " +
-#      "<a href=#{url}>#{url}</a>"
-#
-#    RestClient.post API_URL+"/messages", 
-#      :from => "mailer@mailgun.net",
-#      :to => MY_EMAIL,
-#      :subject => "URL Shortener used",
-#      :text => strip_tags(message),
-#      :html => message
   end
 
   # Use the low order bits of the MD5 hash, and base64/urlencode
