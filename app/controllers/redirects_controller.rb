@@ -66,7 +66,6 @@ class RedirectsController < ApplicationController
     # Create the redirect
     @redirect = Redirect.new(:url => url, :code => code)
     if @redirect and @redirect.save()
-      notify_me(@redirect)
       follow @redirect and return
     else
       fail 'Failed to create redirect' and return
