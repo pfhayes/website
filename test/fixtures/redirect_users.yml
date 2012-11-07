@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  username: MyString
-  hashed_pw: MyString
-
-two:
-  username: MyString
-  hashed_pw: MyString

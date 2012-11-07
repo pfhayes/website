@@ -38,7 +38,7 @@ class RedirectsController < ApplicationController
     end
 
     # Validate code
-    code = params[:code] ? params[:code] : generate_new_code(url)
+    code = params[:code] || generate_new_code(url)
     if code !~ /^[0-9a-zA-Z\-+_]*$/
       fail 'Invalid code' and return
     end
@@ -53,16 +53,6 @@ class RedirectsController < ApplicationController
       end
     end
 
-    # Since this is for personal use, throttle the number of created
-    # redirects
-    threshold_in_hours = 1
-    count_per_threshold = 10
-    old_redirect = Redirect.order("created_at DESC").limit(count_per_threshold).last
-    latest_time = old_redirect ? old_redirect.created_at : (threshold_in_hours+1).hours.ago
-    if (Time.now - latest_time) < threshold_in_hours.hours
-      fail 'Cannot create redirect right now' and return
-    end
-      
     # Create the redirect
     @redirect = Redirect.new(:url => url, :code => code)
     if @redirect and @redirect.save()
@@ -79,10 +69,6 @@ class RedirectsController < ApplicationController
     return base64.gsub(/==\n$/, '').gsub('_', '-').gsub('/', '+')
   end
 
-  def strip_tags(msg)
-    return msg.gsub(/<\/?[^>]*>/, '')
-  end
-
   def get_from_code(code)
     return Redirect.find(:first, :conditions => [ 'code = ?', code])
   end
@@ -93,9 +79,5 @@ class RedirectsController < ApplicationController
 
   def fail(err_str)
     render :status => :unprocessable_entity, :text => err_str
-  end
-
-  def get_full_url(redirect)
-    return root_url + '/' + redirect.code
   end
 end
