@@ -17,10 +17,15 @@
   <div class="page_holder">
     <%= yield %>
   </div>
-  <div class="sidebar">
-    <%= render "shared/about" %>
-    <%= render "shared/contact" %>
-  </div>
+  <%= yield :sidebar %>
+  <% if content_for?(:sidebar)%>
+    <%= yield(:sidebar) %>
+  <% else %>
+    <div class="sidebar">
+      <%= render "shared/about" %>
+      <%= render "shared/contact" %>
+    </div>
+  <% end %>
 </div>
 </div>
 

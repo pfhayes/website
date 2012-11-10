@@ -1,0 +1,13 @@
+<% content_for :stylesheet do %>home<% end %>
+
+<div class="holder">
+  <%= image_tag '/img/yo.png' %>
+  <div id="bio">
+    <div class="bioline">Software engineer at <%= link_to 'Foursquare', Links::Foursquare %></div>
+
+    <div class="bioline">Find me on <%= link_to 'Twitter', Links::Twitter %>,
+      <%= link_to 'Facebook', Links::Facebook %>,
+      <%= link_to 'GitHub', Links::Github %>,
+      or at <%= raw obfuscated_email %></div>
+  </div>
+</div>
