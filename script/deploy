@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+# Github
+git push origin master:master
+
+# Heroku
+git push heroku heroku:master
+heroku run rake db:migrate   
