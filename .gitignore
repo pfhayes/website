@@ -2,7 +2,6 @@
 .env
 config/database.yml
 config/initializers/secret_token.rb
-db/*.sqlite3
 db/personal_development
 log/*.log
 tmp/
