@@ -1,5 +1,31 @@
 <% content_for :stylesheet do %>portfolio<% end %>
 
-<% @folios.each do |folio| %>
-  <%= render 'folios/folio', :folio => folio %>
-<% end %>
+<%= render 'folios/folio',
+  :name => 'GitHub',
+  :url => 'https://www.github.com/pfhayes',
+  :description => 'My GitHub repository.'
+%>
+
+<%= render 'folios/folio',
+  :name => 'WikipediaMobile',
+  :url => 'https://github.com/wikimedia/WikipediaMobile',
+  :description => 'The official Wikimedia Foundation mobile application for Wikipedia. Contributed various bugfixes and improvements.'
+%>
+
+<%= render 'folios/folio',
+  :name => 'WiktionaryMobile',
+  :url => 'https://github.com/wikimedia/WiktionaryMobile',
+  :description => 'The Wikimedia Foundation mobile application for Wiktionary. Built with PhoneGap.'
+%>
+
+<%= render 'folios/folio',
+  :name => 'PubVision',
+  :url => 'http://www.facebook.com/pages/PubVision/187061157978938',
+  :description => 'A hackathon project. A photo booth that businesses can install at their venue to encourage fans to engage on Facebook.'
+%>
+
+<%= render 'folios/folio',
+  :name => 'Website',
+  :url => 'http://patrickhay.es',
+  :description => "You're looking at it! Built with Rails, hosted on Heroku."
+%>

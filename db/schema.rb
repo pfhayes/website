@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104231117) do
-
-  create_table "folios", :force => true do |t|
-    t.string   "name"
-    t.text     "url"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "folios", ["updated_at"], :name => "index_folios_on_updated_at"
+ActiveRecord::Schema.define(:version => 20121110192344) do
 
   create_table "posts", :force => true do |t|
     t.text     "title"
