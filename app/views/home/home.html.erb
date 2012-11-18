@@ -7,15 +7,15 @@
     </div>
     <div id="bio">
       <div class="biohead bioline">Patrick Hayes</div>
-      <div class="bioline">Software engineer at <%= link_to 'Foursquare', Links::Foursquare %></div>
-      <div class="bioline">Find me on <%= link_to 'Twitter', Links::Twitter %>,
-        <%= link_to 'Facebook', Links::Facebook %>,
-        <%= link_to 'GitHub', Links::Github %>,
+      <div class="bioline">Software engineer at <%= get_link_to 'Foursquare', Links::Foursquare %></div>
+      <div class="bioline">Find me on <%= get_link_to 'Twitter', Links::Twitter %>,
+        <%= get_link_to 'Facebook', Links::Facebook %>,
+        <%= get_link_to 'GitHub', Links::Github %>,
         or at <%= raw obfuscated_email %></div>
       <div class="bioline">
-        Read my <%= link_to "resume", :resume %>,
-          <%= link_to "CV", :cv %>, or
-          <%= link_to "portfolio", :portfolio %>
+        Read my <%= get_link_to "resume", :resume %>,
+          <%= get_link_to "CV", :cv %>, or
+          <%= get_link_to "portfolio", :portfolio %>
       </div>
     </div>
   <div id="tail">

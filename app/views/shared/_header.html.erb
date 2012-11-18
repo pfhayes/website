@@ -1,12 +1,12 @@
-<h1 class="title"><%= link_to 'Patrick Hayes', :root, :class => 'title_link' %></h1>
+<h1 class="title"><%= get_link_to 'Patrick Hayes', :root, :class => 'title_link' %></h1>
 
 <div class="header_contact">
   <%= raw obfuscated_email() %><br/>
-  <%= link_to root_url, :root %>
+  <%= get_link_to root_url, :root %>
 </div>
 
 <div class="navigation">
-  <%= link_to "Resume", :resume, :class => get_nav_class('resume') %>
-  <%= link_to "CV", :cv, :class => get_nav_class('cv') %>
-  <%= link_to "Portfolio", :portfolio, :class => get_nav_class('portfolio') %>
+  <%= get_link_to "Resume", :resume, :class => get_nav_class('resume') %>
+  <%= get_link_to "CV", :cv, :class => get_nav_class('cv') %>
+  <%= get_link_to "Portfolio", :portfolio, :class => get_nav_class('portfolio') %>
 </div>

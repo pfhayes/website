@@ -1,6 +1,9 @@
 MY_EMAIL = 'p@patrickhay.es'
 API_KEY = ENV['MAILGUN_API_KEY']
 API_URL = "https://api:#{API_KEY}@api.mailgun.net/v2/mailgun.net"
+HOSTS = ['patrickhay.es', 'pfhay.es', 'phay.es']
+CANON_HOST = 'patrickhay.es'
+CANON_URL = 'http://' + CANON_HOST
 
 module Links
   Twitter = "https://twitter.com/pfjhayes"
