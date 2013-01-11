@@ -94,6 +94,6 @@ PLATFORMS
 DEPENDENCIES
   newrelic_rpm
   pg
-  rails
+  rails (= 3.2.1)
   rest-client
   thin
