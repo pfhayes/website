@@ -1,6 +1,3 @@
-#http://patrickhay.es
-
-
 My website! http://patrickhay.es
 
 ## URL Shortener
