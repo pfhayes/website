@@ -1,6 +1,19 @@
 <div class="resume_section">
 <p class="resume_section_heading">Work Experience</p>
   <%= render 'resume/entry',
+    :name => 'Software Engineer',
+    :organization => 'Foursquare',
+    :location => 'New York, NY',
+    :start_date => 'July 2012',
+    :end_date => 'present',
+    :show_bullets => true,
+    :bullets => [
+      'Developed passive awareness notifications to remind users of the best content nearby',
+      'Built the tips timeline, for discovering tips from people and tastes you follow',
+      'Created Foursquare expertise, for recognizing and rewarding city and neighborhood experts',
+    ]
+  %>
+  <%= render 'resume/entry',
     :name => 'Financial Software Developer',
     :organization => 'Bloomberg LP',
     :location => 'New York, NY',
@@ -15,7 +28,7 @@
   %>
   <%= render 'resume/entry',
     :name => 'Research Engineer',
-    :organization => 'ContextLogic',
+    :organization => 'Wish.com (formerly ContextLogic)',
     :location => 'San Francisco, CA',
     :start_date => 'September',
     :end_date => 'December 2010',
@@ -62,7 +75,6 @@
     :bullets => [
       'Created and improved test suites for BlackBerry OS and Android using Java, C, and Python',
       'Developed a server for hosting and displaying test results using Django',
-      'Completed many high priority assignments to ship products under tight deadlines',
     ]
   %>
   <%= render 'resume/entry',
@@ -75,7 +87,6 @@
     :bullets => [
       'Implemented new test procedures and expanded on existing testing frameworks',
       'Developed test scripts in Python for testing hardware functionality of devices',
-      'Created and maintained department\'s corporate website using Wiki software',
     ]
   %>
 </div>

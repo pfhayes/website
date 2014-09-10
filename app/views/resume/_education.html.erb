@@ -20,13 +20,15 @@
       '<em>Excellent Academic Standing</em>, University of Waterloo, 2007&ndash;2011'
     ]
     %>
-  <%= render 'resume/entry',
-    :name => 'Relevant Coursework',
-    :show_bullets => true,
-    :bullets => [
-      'Machine Learning; Artificial Intelligence; Algorithm Design; Database Systems Implementation; Principles of Programming Languages; Operating Systems; Theory of Computation',
-      'Readings in Pure Mathematics; Algebraic Number Theory; Measure Theory and Fourier Analysis; Real Analysis; Complex Analysis; Ring/Group Theory; Elementary Differential Geometry',
-      'Communications in Math and Computer Science, Macroeconomics'
-    ]
-  %>
+  <% if full %>
+    <%= render 'resume/entry',
+      :name => 'Relevant Coursework',
+      :show_bullets => true,
+      :bullets => [
+        'Machine Learning; Artificial Intelligence; Algorithm Design; Database Systems Implementation; Principles of Programming Languages; Operating Systems; Theory of Computation',
+        'Readings in Pure Mathematics; Algebraic Number Theory; Measure Theory and Fourier Analysis; Real Analysis; Complex Analysis; Ring/Group Theory; Elementary Differential Geometry',
+        'Communications in Math and Computer Science, Macroeconomics'
+      ]
+    %>
+  <% end %>
 </div>
