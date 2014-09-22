@@ -6,7 +6,7 @@ if (mixpanel !== undefined) {
 	$(document).ready(function() {
 		$('a').click(function (event) {
 			var link = $(this);
-			mixpanel.track("link " + link.href);
+			mixpanel.track("link " + link.attr('href'));
 		});
 	});
 }
