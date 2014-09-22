@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/pfhayes
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://patrickhay.es
+  * I am pfhayes (https://keybase.io/pfhayes) on keybase.
+  * I have a public key with fingerprint E718 ACF1 DC25 D114 3823  5E6E 194E 29C1 1448 0134
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "e718acf1dc25d11438235e6e194e29c114480134",
+            "host": "keybase.io",
+            "key_id": "194E29C114480134",
+            "uid": "f9ce2662668cc5120d97431101bc4400",
+            "username": "pfhayes"
+        },
+        "service": {
+            "hostname": "patrickhay.es",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1396134935,
+    "expire_in": 157680000,
+    "prev": "d1b330987fca15da05209511e6dbebbb4420d5bae4239cab30ae579126599a4c",
+    "seqno": 11,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+Comment: GPGTools - https://gpgtools.org
+
+owFNkWtIFFEUx3d1LVuUyvKDpkhXtIzV5s5jZ2eNcltUEK3Eog+1LvO4u47WzDY7
+bm6ykSlFLyqSCCoEg8gEi6S2h0XZFzHJElFcMKGiRDNJKZKguiMJXS5c7v/8zv+c
+w7mQHG+ymuPb1nhSC9sSzK+ezwmmKnZ3WSMQVCkMnI2gDi0+PlnxIy2gyYoOnACx
+0MGLPiiJJCNBSFMOkmKQHUGORiQnYoV2EJCigQ3UqEEjA9sIfBAVyCrW8McrS1jF
+fDHJuf/n6xcDPk5EpN2Or0MUGUgSEsfSFIQEFESaJggDDCJN4Q8iTAd8NXwYBUHE
+BrAYkkVktGxUXgJ4XZPFOkwVYMwGApqqq6J6AIdqdD3gNDL1cMBADyPB+8/EK8iK
+hOfGCSGkBWVVAU6ISVGXDVdIcXbcM0cxNoAaArKGvLJBMKzdQeBjlEEhbClBgaII
+zsH6RB4yEk8wJMExECK7JCBBEGgaz8cIPKJJihN5gSJ4xLAcJO0Mx/G0CIyxDikq
+9oa4T96PPYOyX+H1eg2ByClzhsVktpqWJcQZqzNZV6xaWijZt/x39hXXu2OjX80V
+3anFU5b7HS/v5ac3xLpY/palNhadaf81dbTjdu+zorUPKqeTd75xPFzZvGX/vIva
+m7WHPPKiMrMpLWdktrB3wdfcU33WMnOZilbuent3oezi9RstJ4ovxcpHrD0/RG/u
+8KYkv3eipOja0/eNFXkliWNjTYOf3fKHjUP93Wjo5DgRXefOiWi12yY2D0TdiVcD
+d8D6wZ82T+6OUrF6++rSdPjJNmtrDc99H/0Yb/bkxaKZr0Ef4d2g1u6bGGbbs07n
+P8r+E+qc9GSMdw7HpYzcbD1Xt7U3FCl/nHT8fEJKVfWk9iSr8ItruuebMu8a6G9R
+u6xnCtL+Ag==
+=gcw2
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pfhayes
+
+==================================================================
