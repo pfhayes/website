@@ -21,9 +21,13 @@
 }
 
 #bio_img {
-  width: 188px;
+  background-image: url('/img/yo.png');
+  background-repeat: no-repeat;
+  background-size: 188px;
   position: absolute;
   right: 0px;
+  height: 165px;
+  width: 188px;
 }
 
 #bio {
