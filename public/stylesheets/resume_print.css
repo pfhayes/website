@@ -9,6 +9,9 @@
   margin-left:13px;
   margin-bottom:5px;
 }
+.resume_entry_publication_title {
+  font-style: italic;
+}
 .resume_entry_bullets {
   margin-top:0px;
 }

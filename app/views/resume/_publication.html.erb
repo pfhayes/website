@@ -1,0 +1,22 @@
+<%
+  organization ||= nil
+  location ||= nil
+  start_date ||= nil
+  end_date ||= nil
+%>
+<div class="resume_entry">
+  <p class="resume_entry_title">
+  <%= authors %>.
+  <span class="resume_entry_publication_title"><%= if link
+    get_link_to name, link
+  else
+    name
+  end
+  %>.</span>
+  <% if organization %>
+    <%= organization %><%
+    if location %>, <%= location %><% end %><%
+    if (end_date) %><% if (start_date) %>, <%= start_date %>&ndash;<%= end_date %><% else %>, <%= end_date %><% end %><% end %>
+  <% end %>
+  </p>
+</div>
