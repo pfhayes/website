@@ -19,4 +19,5 @@
     if (end_date) %><% if (start_date) %>, <%= start_date %>&ndash;<%= end_date %><% else %>, <%= end_date %><% end %><% end %>
   <% end %>
   </p>
+  <% if link %><p class="resume_link"><%= get_link_to link, link %></p><% end %>
 </div>

@@ -4,6 +4,11 @@
 .resume_entry {
   margin-bottom:16px;
 }
+.resume_link {
+  margin-top:0px;
+  margin-left:13px;
+  text-decoration: underline;
+}
 .resume_entry_title {
   margin-top:0px;
   margin-left:13px;

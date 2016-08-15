@@ -4,6 +4,9 @@
 .resume_entry {
   margin-bottom:16px;
 }
+.resume_link {
+  display: none;
+}
 .resume_entry_title {
   margin-top:0px;
   margin-left:13px;

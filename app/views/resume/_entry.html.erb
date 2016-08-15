@@ -21,6 +21,7 @@
   if location %>, <%= location %><% end %><%
   if (end_date) %><% if (start_date) %>, <%= start_date %>&ndash;<%= end_date %><% else %>, <%= end_date %><% end %><%
 end %></p>
+  <% if link %><p class="resume_link"><%= get_link_to link, link %></p><% end %>
 <% if bullets and show_bullets %>
   <ul class="resume_entry_bullets">
     <% bullets.each do |bullet| %>
