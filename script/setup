@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+id -u patrick &>/dev/null || sudo useradd patrick 
+
 sudo apt-get update -yq
 sudo apt-get install gcc g++ libpq-dev make nginx postgresql ruby ruby-dev ruby-bundler -yq
 
