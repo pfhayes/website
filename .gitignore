@@ -1,7 +1,6 @@
 .bundle
 .env
 .ruby-version
-config/initializers/secret_token.rb
 db/personal_development
 log/*.log
 tmp/
