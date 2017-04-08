@@ -7,7 +7,7 @@ sudo apt-get install gcc g++ libpq-dev make nginx postgresql ruby ruby-dev ruby-
 
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
 sudo cp resources/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
-sudo cp resources/patrick-web.conf /etc/init/patrick-web.conf
+sudo cp resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
 sudo service nginx restart
 sudo service postgresql restart
