@@ -9,5 +9,6 @@ module Personal
     config.action_view.javascript_expansions[:defaults] = %w(rails)
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
+    config.log_path = "/var/log/patrick-web.log"
   end
 end
