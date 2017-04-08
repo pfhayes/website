@@ -31,9 +31,13 @@ GEM
     arel (3.0.3)
     builder (3.0.4)
     daemons (1.2.4)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     eventmachine (1.2.3)
     hike (1.2.3)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.8.1)
     journey (1.0.4)
     json (1.8.6)
@@ -42,6 +46,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.12.1)
+    netrc (0.11.0)
     pg (0.20.0)
     polyglot (0.3.5)
     rack (1.4.7)
@@ -69,6 +74,10 @@ GEM
     rake (12.0.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (2.0.1)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -84,6 +93,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.53)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
 
 PLATFORMS
   ruby
@@ -91,6 +103,7 @@ PLATFORMS
 DEPENDENCIES
   pg
   rails (= 3.2.22)
+  rest-client
   thin
 
 RUBY VERSION
