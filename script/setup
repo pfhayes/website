@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+sudo apt-get update -yq
+sudo apt-get install gcc g++ libpq-dev make nginx ruby ruby-dev ruby-bundler -yq
+
+sudo cp resources/nginx.conf /etc/nginx/nginx.conf
+sudo cp resources/service.conf /etc/init/patrick-web.conf
+
+sudo service nginx restart
+sudo service patrick-web restart
+
+bundle install
