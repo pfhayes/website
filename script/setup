@@ -10,3 +10,5 @@ sudo service nginx restart
 sudo service patrick-web restart
 
 bundle install
+
+# TODO(patrick): Generate config/secrets.yml
