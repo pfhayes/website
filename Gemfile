@@ -2,6 +2,6 @@ source 'http://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '4.1.11'
+gem 'rails', '4.2.10'
 gem 'thin'
 gem 'pg'
