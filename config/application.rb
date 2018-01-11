@@ -6,7 +6,6 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Personal
   class Application < Rails::Application
-    config.action_view.javascript_expansions[:defaults] = %w(rails)
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
   end
