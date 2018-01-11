@@ -21,3 +21,5 @@ sudo service postgresql restart
 sudo service patrick-web restart
 
 bundle install
+
+# TODO(patrick): Generate config/secrets.yml
