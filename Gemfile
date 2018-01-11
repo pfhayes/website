@@ -4,5 +4,5 @@ ruby '2.3.1'
 
 gem 'rails', '4.2.10'
 gem 'thin'
-gem 'pg'
+gem 'pg', '~> 0.20'
 gem 'rest-client'
