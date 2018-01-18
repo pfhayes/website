@@ -29,3 +29,5 @@ bundle install
 # TODO(patrick): create database?
 # psql --dbname postgres -c "CREATE DATABASE personal_production"
 # TODO(patrick): RAILS_ENV=production bundle exec rake db:setup
+
+RAILS_ENV=production bundle exec rake assets:precompile
