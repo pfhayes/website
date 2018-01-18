@@ -8,4 +8,5 @@ Personal::Application.configure do
   config.i18n.fallbacks = true
   config.log_level = :info
   config.serve_static_files = true
+  config.assets.serve_static_files = true
 end
