@@ -16,10 +16,6 @@ sudo chown patrick /var/log/patrick-web.log
 mkdir -p /home/ubuntu/website/tmp
 chmod -R 777 /home/ubuntu/website/tmp
 
-sudo service nginx restart
-sudo service postgresql restart
-sudo service patrick-web restart
-
 bundle install
 
 # TODO(patrick): Generate config/secrets.yml
@@ -31,3 +27,7 @@ bundle install
 # TODO(patrick): RAILS_ENV=production bundle exec rake db:setup
 
 RAILS_ENV=production bundle exec rake assets:precompile
+
+sudo service nginx restart
+sudo service postgresql restart
+sudo service patrick-web restart
