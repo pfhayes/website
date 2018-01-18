@@ -2,7 +2,6 @@
 .env
 .ruby-version
 config/database.yml
-config/initializers/secret_token.rb
 db/personal_development
 log/*.log
 tmp/
