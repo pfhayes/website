@@ -18,5 +18,6 @@ module Website
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.public_file_server.enabled = true
+    config.log_path = "/var/log/patrick-web.log"
   end
 end

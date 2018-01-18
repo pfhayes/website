@@ -1,14 +1,33 @@
 #!/usr/bin/env bash
 
+id -u patrick &>/dev/null || sudo useradd patrick 
+
 sudo apt-get update -yq
-sudo apt-get install gcc g++ libpq-dev make nginx ruby ruby-dev ruby-bundler -yq
+sudo apt-get install gcc g++ libpq-dev make nginx postgresql ruby ruby-dev ruby-bundler -yq
 
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
-sudo cp resources/service.conf /etc/init/patrick-web.conf
+sudo cp resources/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+sudo cp resources/patrick-web.service /etc/systemd/system/patrick-web.service
+sudo systemctl daemon-reload
+sudo touch /var/log/patrick-web.log
+sudo chown patrick /var/log/patrick-web.log 
 
-sudo service nginx restart
-sudo service patrick-web restart
+# TODO(patrick): Find a better location for this
+mkdir -p /home/ubuntu/website/tmp
+chmod -R 777 /home/ubuntu/website/tmp
 
 bundle install
 
 # TODO(patrick): Generate config/secrets.yml
+# TODO(patrick): Update pg_hba.conf so postgres database is acessible
+# TODO(patrick): create user
+# sudo -u postgres psql -c "create role patrick with createdb login password 'password'"
+# TODO(patrick): create database?
+# psql --dbname postgres -c "CREATE DATABASE personal_production"
+# TODO(patrick): RAILS_ENV=production bundle exec rake db:setup
+
+RAILS_ENV=production bundle exec rake assets:precompile
+
+sudo service nginx restart
+sudo service postgresql restart
+sudo service patrick-web restart
