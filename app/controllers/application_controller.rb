@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   def render_404
     params[:title] = 'Sorry'
@@ -25,5 +25,4 @@ class ApplicationController < ActionController::Base
   def render_error
     render 'home/error', :status => params[:error_code]
   end
-
 end

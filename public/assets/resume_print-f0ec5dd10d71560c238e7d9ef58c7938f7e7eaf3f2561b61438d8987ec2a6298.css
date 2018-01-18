@@ -1,0 +1,46 @@
+.holder {
+  width:700px;
+}
+.resume_entry {
+  margin-bottom:16px;
+}
+.resume_link {
+  margin-top:0px;
+  margin-left:13px;
+  text-decoration: underline;
+}
+.resume_entry_title {
+  margin-top:0px;
+  margin-left:13px;
+  margin-bottom:5px;
+}
+.resume_entry_publication_title {
+  font-style: italic;
+}
+.resume_entry_bullets {
+  margin-top:0px;
+}
+.resume_entry_name {
+  font-weight: bold;
+}
+.resume_section {
+  margin-bottom:16px;
+}
+.resume_section_heading { 
+  margin-top:0px;
+  margin-bottom:16px;
+	font-size: 10.5pt;
+	font-weight: bold;
+  text-transform:uppercase;
+}
+.resume_footer_entry {
+	font-size: 10.5pt;
+	font-weight: bold;
+  margin-left: 13px;
+}
+.displaynone {
+  display:none;
+}
+.resume_footer {
+  display:none;
+}
