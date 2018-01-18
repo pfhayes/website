@@ -23,3 +23,9 @@ sudo service patrick-web restart
 bundle install
 
 # TODO(patrick): Generate config/secrets.yml
+# TODO(patrick): Update pg_hba.conf so postgres database is acessible
+# TODO(patrick): create user
+# sudo -u postgres psql -c "create role patrick with createdb login password 'password'"
+# TODO(patrick): create database?
+# psql --dbname postgres -c "CREATE DATABASE personal_production"
+# TODO(patrick): RAILS_ENV=production bundle exec rake db:setup
