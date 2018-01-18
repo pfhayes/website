@@ -4,6 +4,6 @@ WantedBy=multi-user.target
 [Service]
 ExecStart=/usr/bin/bundle exec thin start -p 3000 -e production
 Restart=always
-WorkingDirectory=/home/patrick/website
+WorkingDirectory=/home/ubuntu/website
 User=patrick
 Group=nogroup
