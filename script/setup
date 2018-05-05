@@ -9,6 +9,7 @@ sudo cp resources/service.conf /etc/init/patrick-web.conf
 sudo service nginx restart
 sudo service patrick-web restart
 
+gem install bundler
 bundle install
 
 # TODO(patrick): Generate config/secrets.yml
