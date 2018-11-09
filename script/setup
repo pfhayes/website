@@ -10,6 +10,7 @@ sudo apt-get install software-properties-common -yq
 sudo add-apt-repository ppa:certbot/certbot -yq
 sudo apt-get update
 sudo apt-get install gcc g++ libpq-dev make nginx ruby ruby-dev ruby-bundler yarn python-certbot-nginx -yq
+sudo apt autoremove
 
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
 sudo cp resources/patrick-web.service /etc/systemd/system/patrick-web.service
