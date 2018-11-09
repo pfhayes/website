@@ -15,6 +15,7 @@ echo "deb-src https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee -a
 
 sudo apt-get update
 sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python-certbot-nginx -yq
+sudo apt autoremove
 
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
 sudo cp resources/service.conf /etc/init/patrick-web.conf
