@@ -8,8 +8,13 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update -yq
 sudo apt-get install software-properties-common -yq
 sudo add-apt-repository ppa:certbot/certbot -yq
+curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+DISTRO=$(lsb_release -c -s)
+echo "deb https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb-src https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+
 sudo apt-get update
-sudo apt-get install gcc g++ libpq-dev make nginx ruby ruby-dev ruby-bundler yarn python-certbot-nginx -yq
+sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python-certbot-nginx -yq
 
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
 sudo cp resources/service.conf /etc/init/patrick-web.conf
