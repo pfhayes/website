@@ -1,6 +1,20 @@
 <div class="resume_section">
   <p class="resume_section_heading">Talks</p>
   <%= render 'resume/entry',
+    :name => 'Tuning the Untunable: Insights for Deep Learning Optimization',
+    :organization => 'Open Data Science Conference',
+    :link => 'https://www.youtube.com/watch?v=rj3n2RukuDM',
+    :end_date => 'November 2018',
+    :show_bullets => false
+  %>
+  <%= render 'resume/entry',
+    :name => 'Lessons Learned for Founding a Startup',
+    :organization => 'University of Waterloo',
+    :link => 'https://www.youtube.com/watch?v=KjKV6aiwbOk',
+    :end_date => 'January 2018',
+    :show_bullets => false
+  %>
+  <%= render 'resume/entry',
     :name => 'Optimizing Everything with Python',
     :organization => 'Talk Python To Me Podcast',
     :link => 'https://talkpython.fm/episodes/show/51/sigopt-optimizing-everything-with-python',
@@ -9,7 +23,7 @@
   %>
   <%= render 'resume/entry',
     :name => 'Wiktionary Mobile',
-    :organization => 'Wikimania 2012',
+    :organization => 'Wikimania',
     :link => 'http://www.patrickhay.es/talks/wikimania2012.pdf',
     :location => 'Washington DC',
     :start_date => nil,
