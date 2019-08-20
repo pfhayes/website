@@ -1,6 +1,13 @@
 <div class="resume_section">
   <p class="resume_section_heading">Talks</p>
   <%= render 'resume/entry',
+    :name => 'Accelerating Model Development by Reducing Operational Barriers',
+    :organization => 'NVIDIA GTC',
+    :link => 'https://www.youtube.com/watch?v=OMYF9fvK5KQ',
+    :end_date => 'March 2019',
+    :show_bullets => false
+  %>
+  <%= render 'resume/entry',
     :name => 'Tuning the Untunable: Insights for Deep Learning Optimization',
     :organization => 'Open Data Science Conference',
     :link => 'https://www.youtube.com/watch?v=rj3n2RukuDM',
@@ -21,13 +28,14 @@
     :end_date => 'March 2016',
     :show_bullets => false
   %>
-  <%= render 'resume/entry',
-    :name => 'Wiktionary Mobile',
-    :organization => 'Wikimania',
-    :link => 'http://www.patrickhay.es/talks/wikimania2012.pdf',
-    :location => 'Washington DC',
-    :start_date => nil,
-    :end_date => 'July 2012',
-    :show_bullets => false
-  %>
+  <% if full %>
+    <%= render 'resume/entry',
+      :name => 'Wiktionary Mobile',
+      :organization => 'Wikimania',
+      :link => 'http://www.patrickhay.es/talks/wikimania2012.pdf',
+      :start_date => nil,
+      :end_date => 'July 2012',
+      :show_bullets => false
+    %>
+  <% end %>
 </div>
