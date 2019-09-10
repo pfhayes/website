@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     get 'gh' => redirect(Links::Github)
     get 'fo' => redirect(Links::Foursquare)
 
+    get 'zshrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.zshrc')
+    get 'vimrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.vimrc')
+
     # Nothing left, route to error page
     get '*wild' => 'application#render_404', :as => :error_404
 end
