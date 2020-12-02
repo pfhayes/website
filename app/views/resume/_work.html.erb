@@ -6,7 +6,12 @@
     :location => 'San Francisco, CA',
     :start_date => 'November 2014',
     :end_date => 'present',
-    :show_bullets => false
+    :show_bullets => true,
+    :bullets => [
+      'Founder, architect, and technical mentor at SigOpt, which was acquired by Intel in Oct 2020',
+      "Inventor of SigOpt's patented distributed optimization platform for machine learning models",
+      'Full-stack engineer with experience managing up to 10 frontend, backend, and research staff',
+    ]
   %>
   <%= render 'resume/entry',
     :name => 'Senior Software Engineer',
@@ -22,12 +27,12 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'Financial Software Developer',
+    :name => 'Internship - Financial Software Developer',
     :organization => 'Bloomberg LP',
     :location => 'New York, NY',
     :start_date => 'May',
     :end_date => 'August 2011',
-    :show_bullets => true,
+    :show_bullets => full,
     :bullets => [
       'Developed an application for monitoring volatility of financial securities',
       'Implemented an efficient, scalable caching system for handling large datasets using C++',
@@ -35,12 +40,12 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'Research Engineer',
+    :name => 'Internship - Research Engineer',
     :organization => 'Wish.com (formerly ContextLogic)',
     :location => 'San Francisco, CA',
     :start_date => 'September',
     :end_date => 'December 2010',
-    :show_bullets => true,
+    :show_bullets => full,
     :bullets => [
       'Developed a topical analysis application using sophisticated machine learning methods',
       'Produced highly optimized C++ to improve performance in existing technologies by up to 20x',
@@ -48,12 +53,12 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'Software Engineer',
+    :name => 'Internship - Software Engineer',
     :organization => 'Facebook',
     :location => 'Palo Alto, CA',
     :start_date => 'January',
     :end_date => 'April 2010',
-    :show_bullets => true,
+    :show_bullets => full,
     :bullets => [
       'Developed a complete, scalable, distributed search application using PHP, Java and SQL',
       'Leveraged open source technologies to build a robust, efficient, and extensible search framework',
@@ -61,7 +66,7 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'User Interface Developer',
+    :name => 'Internship - User Interface Developer',
     :organization => 'Sybase iAnywhere',
     :location => 'Waterloo, ON',
     :start_date => 'May',
@@ -74,7 +79,7 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'Automation Tools Developer',
+    :name => 'Internship - Automation Tools Developer',
     :organization => 'Research In Motion',
     :location => 'Waterloo, ON',
     :start_date => 'September',
@@ -86,7 +91,7 @@
     ]
   %>
   <%= render 'resume/entry',
-    :name => 'Software Test Associate',
+    :name => 'Internship - Software Test Associate',
     :organization => 'Research In Motion',
     :location => 'Waterloo, ON',
     :start_date => 'January',
