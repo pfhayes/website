@@ -12,7 +12,9 @@
     name
   end
   %>.</span>
-  <%= authors %>.
+  <% if full %>
+    <%= authors %>.
+  <% end %>
   <% if organization %>
     <%= organization %><%
     if location %>, <%= location %><% end %><%
