@@ -6,13 +6,13 @@
 %>
 <div class="resume_entry">
   <p class="resume_entry_title">
-  <%= authors %>.
   <span class="resume_entry_publication_title"><%= if link
     get_link_to name, link
   else
     name
   end
   %>.</span>
+  <%= authors %>.
   <% if organization %>
     <%= organization %><%
     if location %>, <%= location %><% end %><%
