@@ -24,6 +24,7 @@
   font-weight: bold;
 }
 .resume_section {
+  break-inside: avoid-page;
   margin-bottom:16px;
 }
 .resume_section_heading { 
