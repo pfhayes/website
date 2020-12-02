@@ -2,7 +2,7 @@
   width:700px;
 }
 .resume_entry {
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 .resume_link {
   margin-top:0px;
@@ -25,11 +25,11 @@
 }
 .resume_section {
   break-inside: avoid-page;
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 .resume_section_heading { 
   margin-top:0px;
-  margin-bottom:16px;
+  margin-bottom:10px;
 	font-size: 10.5pt;
 	font-weight: bold;
   text-transform:uppercase;
