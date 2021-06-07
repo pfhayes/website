@@ -6,11 +6,12 @@ CANON_HOST = 'patrickhay.es'
 CANON_URL = 'http://' + CANON_HOST
 
 module Links
-  SigOpt = "https://sigopt.com/"
-  Twitter = "https://twitter.com/pfjhayes"
   Facebook = "https://facebook.com/pfhayes"
-  Linkedin = "https://www.linkedin.com/in/pfjhayes"
   Foursquare = "https://foursquare.com/pfjhayes"
   Github = "https://github.com/pfhayes"
+  Linkedin = "https://www.linkedin.com/in/pfjhayes"
+  SigOpt = "https://sigopt.com/"
+  Twitter = "https://twitter.com/pfjhayes"
+  YouTube = "https://youtube.com/"
 end
 

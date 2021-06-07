@@ -1,11 +1,19 @@
 <div class="resume_section">
 <p class="resume_section_heading">Work Experience</p>
   <%= render 'resume/entry',
+    :name => 'Software Engineer',
+    :organization => 'YouTube',
+    :location => 'San Bruno, CA',
+    :start_date => 'June 2021',
+    :end_date => 'present',
+    :show_bullets => false
+  %>
+  <%= render 'resume/entry',
     :name => 'Cofounder & CTO',
     :organization => 'SigOpt',
     :location => 'San Francisco, CA',
     :start_date => 'November 2014',
-    :end_date => 'present',
+    :end_date => 'April 2021',
     :show_bullets => true,
     :bullets => [
       'Founder, architect, and technical mentor at SigOpt, which was acquired by Intel in Oct 2020',
