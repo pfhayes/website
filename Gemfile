@@ -7,7 +7,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 5.2.4.6'
+gem "nokogiri", ">= 1.11.4"
+
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 gem 'thin'
