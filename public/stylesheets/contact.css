@@ -1,0 +1,27 @@
+.displaynone {
+  display:none;
+}
+
+.sidebar .about {
+  margin-bottom: 30px;
+}
+.sidebar .contact {
+  display: none;
+}
+
+.summary, .contact {
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+.contact {
+  line-height: 26px;
+}
+
+@media screen and (min-width: 900px) {
+  .holder {
+    width:700px;
+  }
+  .sidebar .contact {
+    display: block;
+  }
+}

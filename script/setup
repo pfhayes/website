@@ -13,7 +13,7 @@ echo "deb https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee /etc/a
 echo "deb-src https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
 sudo apt-get update
-sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn -yq
+sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python3-certbot-nginx zlibg1g-dev -yq
 sudo apt-get remove certbot
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
@@ -26,6 +26,11 @@ sudo certbot renew --dry-run
 sudo cp resources/nginx.conf /etc/nginx/nginx.conf
 sudo cp resources/patrick-web.service /etc/systemd/system/patrick-web.service
 sudo systemctl daemon-reload
+sudo mkdir -p /home/ubuntu/website/log
+sudo chmod 0664 -R /home/ubuntu/website/log
+sudo chmod 0774 /home/ubuntu/website/log
+sudo chown -R ubuntu /home/ubuntu/website/log
+sudo chgrp -R ubuntu /home/ubuntu/website/log
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log 
 

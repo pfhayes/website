@@ -22,28 +22,28 @@
 <body class="body">
 
 <div class="content_holder">
-<div class="header_holder">
-<% if content_for?(:header)%>
-  <%= yield :header %>
-<% else %>
-  <%= render "shared/header" %>
-<% end %>
-</div>
-
-<div class="body_holder">
-  <div class="page_holder">
-    <%= yield %>
+  <div class="header_holder">
+    <% if content_for?(:header)%>
+      <%= yield :header %>
+    <% else %>
+      <%= render "shared/header" %>
+    <% end %>
   </div>
-  <%= yield :sidebar %>
-  <% if content_for?(:sidebar)%>
-    <%= yield(:sidebar) %>
-  <% else %>
-    <div class="sidebar">
-      <%= render "shared/about" %>
-      <%= render "shared/contact" %>
+
+  <div class="body_holder">
+    <%= yield :sidebar %>
+    <% if content_for?(:sidebar)%>
+      <%= yield(:sidebar) %>
+    <% else %>
+      <div class="sidebar">
+        <%= render "shared/about" %>
+        <%= render "shared/contact" %>
+      </div>
+    <% end %>
+    <div class="page_holder">
+      <%= yield %>
     </div>
-  <% end %>
-</div>
+  </div>
 </div>
 
 <%= render "shared/footer" %>

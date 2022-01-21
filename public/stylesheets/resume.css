@@ -1,6 +1,3 @@
-.holder {
-  width:700px;
-}
 .resume_entry {
   margin-bottom:16px;
 }
@@ -9,7 +6,6 @@
 }
 .resume_entry_title {
   margin-top:0px;
-  margin-left:13px;
   margin-bottom:5px;
 }
 .resume_entry_publication_title {
@@ -22,12 +18,12 @@
   font-weight: bold;
 }
 .resume_section {
-  margin-bottom:16px;
+  margin-bottom:40px;
 }
 .resume_section_heading { 
-  margin-top:0px;
-  margin-bottom:16px;
-	font-size: 10.5pt;
+  margin-bottom:20px;
+  margin-top: 0;
+	font-size: 16pt;
 	font-weight: bold;
   text-transform:uppercase;
 }
@@ -37,8 +33,24 @@
 .resume_footer_entry {
 	font-size: 10.5pt;
 	font-weight: bold;
-  margin-left: 13px;
+  margin-bottom: 10px;
 }
 .displaynone {
   display:none;
+}
+
+.sidebar .about {
+  margin-bottom: 30px;
+}
+.sidebar .contact {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .holder {
+    width:700px;
+  }
+  .sidebar .contact {
+    display: block;
+  }
 }
