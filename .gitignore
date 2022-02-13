@@ -5,6 +5,7 @@ db/personal_development
 log/*.log
 tmp/
 
+public/assets/*
 /.bundle
 
 # Ignore the default SQLite database.
