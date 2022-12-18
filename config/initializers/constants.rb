@@ -11,6 +11,7 @@ module Links
   Github = "https://github.com/pfhayes"
   Linkedin = "https://www.linkedin.com/in/pfjhayes"
   SigOpt = "https://sigopt.com/"
+  Mastodon = "https://mstdn.ca/@pfhayes"
   Twitter = "https://twitter.com/pfjhayes"
   YouTube = "https://youtube.com/"
 end
