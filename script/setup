@@ -43,7 +43,7 @@ sudo chown patrick /var/log/patrick-web.log
 mkdir -p /home/ubuntu/website/tmp
 chmod -R 777 /home/ubuntu/website/tmp
 
-gem install bundler
+sudo gem install bundler
 bundle install
 
 # TODO(patrick): Generate config/secrets.yml
