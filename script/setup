@@ -16,7 +16,7 @@ echo "deb https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee /etc/a
 echo "deb-src https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
 sudo apt-get update
-sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python3-certbot-nginx zlibg1g-dev -yq
+sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python3-certbot-nginx -yq
 sudo apt-get remove certbot
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
