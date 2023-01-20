@@ -1,5 +1,6 @@
 <div class="contact">
   <%= get_link_to "Twitter", Links::Twitter, :class => 'nav_link' %><br/>
+  <%= get_link_to "Mastodon", Links::Mastodon, :class => 'nav_link', :rel => 'me' %><br/>
   <%= get_link_to "GitHub", Links::Github, :class => 'nav_link' %><br/>
   <%= get_link_to "LinkedIn", Links::Linkedin, :class => 'nav_link' %><br/>
   <%= raw obfuscated_email() %>
