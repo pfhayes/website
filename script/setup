@@ -3,6 +3,9 @@
 set -e
 set -o pipefail
 
+# Needs to match patrick-web.service
+export GEM_HOME=/home/ubuntu/.gem/ruby/2.7.0
+
 id -u patrick &>/dev/null || sudo useradd patrick 
 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
