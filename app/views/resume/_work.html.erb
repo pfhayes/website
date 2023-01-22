@@ -1,33 +1,35 @@
 <div class="resume_section">
 <p class="resume_section_heading">Work Experience</p>
   <%= render 'resume/entry',
-    :name => 'Software Engineer',
+    :name => 'Senior Staff Software Engineer',
     :organization => 'YouTube',
-    :location => 'San Bruno, CA',
-    :start_date => 'June 2021',
+    :start_date => '2021',
     :end_date => 'present',
-    :show_bullets => false
+    :show_bullets => true,
+    :bullets => [
+      '"Uber Tech Lead" for YouTube\'s Developer Experience team',
+      "Architect and technical mentor for frontend, backend, and infrastructure teams",
+      "Developed test infrastructure for thousands of engineers at YouTube",
+    ]
   %>
   <%= render 'resume/entry',
     :name => 'Cofounder & CTO',
     :organization => 'SigOpt',
-    :location => 'San Francisco, CA',
-    :start_date => 'November 2014',
-    :end_date => 'April 2021',
+    :start_date => '2014',
+    :end_date => '2021',
     :show_bullets => true,
     :bullets => [
-      'Founder, architect, and technical mentor at SigOpt, which was acquired by Intel in Oct 2020',
+      'Founder and architect at SigOpt, which was acquired by Intel in Oct 2020',
       "Inventor of SigOpt's patented distributed optimization platform for machine learning models",
-      'Full-stack engineer with experience managing up to 10 frontend, backend, and research staff',
+      'Full-stack engineer with experience managing frontend, backend, and research staff',
       'Y Combinator alumni, Winter 2015',
     ]
   %>
   <%= render 'resume/entry',
     :name => 'Senior Software Engineer',
     :organization => 'Foursquare',
-    :location => 'New York, NY',
-    :start_date => 'July 2012',
-    :end_date => 'November 2014',
+    :start_date => '2012',
+    :end_date => '2014',
     :show_bullets => true,
     :bullets => [
       'Developed passive awareness notifications to remind users of the best content nearby',
@@ -41,11 +43,11 @@
     :end_date => '2012',
     :show_bullets => true,
     :bullets => [
-      'Bloomberg LP, Financial Software Developer, New York, NY, May–Aug 2011',
-      'Wish, Research Engineer, San Francisco, CA, Sept–Dec 2011',
-      'Facebook, Software Engineer, Palo Alto, CA, Jan–Apr 2010',
-      'Sybase, User Interface Developer, Waterloo, ON, May–Aug 2009',
-      'BlackBerry, Automation Tools Developer, Waterloo, ON, Jan–Dec 2008',
+      '<em>Bloomberg</em>, Financial Software Developer, 2011',
+      '<em>Wish</em>, Research Engineer, 2011',
+      '<em>Facebook</em>, Software Engineer, 2010',
+      '<em>Sybase</em>, User Interface Developer, 2009',
+      '<em>BlackBerry</em>, Automation Tools Developer, 2008',
     ]
   %>
 </div>
