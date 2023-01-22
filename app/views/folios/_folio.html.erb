@@ -1,4 +1,15 @@
+<%
+  bullets ||= []
+  show_bullets ||= true if local_assigns[:show_bullets].nil?
+%>
 <div class="entry_box">
   <%= get_link_to name, url, :class => 'entry_title' %>
   <div class="entry_desc"><%= description %></div>
+<% if bullets and show_bullets %>
+  <ul class="resume_entry_bullets">
+    <% bullets.each do |bullet| %>
+      <li class="resume_entry_bullet"><%= raw bullet %></li>
+    <% end %>
+  </ul>
+<% end %>
 </div>

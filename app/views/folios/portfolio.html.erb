@@ -3,13 +3,20 @@
 <%= render 'folios/folio',
   :name => 'GitHub',
   :url => Links::Github,
-  :description => 'My GitHub repository.'
+  :description => 'My GitHub repository. Selected open source contributions:',
+  :show_bullets => true,
+  :bullets => [
+    '<a href="https://github.com/jsx-eslint/eslint-plugin-react/commits?author=pfhayes">eslint-plugin-react</a>. Contrubutor of additional lint rules for JSX</a>',
+    '<a href="https://github.com/wincent/command-t/pulls?q=is%3Apr+author%3Apfhayes">command-t</a>. Added faster scanning for git repositories.</a>',
+    '<a href="https://github.com/kmagiera/babel-watch/commits?author=pfhayes">babel-watch</a>. Reliability fixes.',
+    '<a href="https://github.com/sqlalchemy/sqlalchemy/commits?author=pfhayes">sqlalchemy</a>. Bug fixes and query improvements.',
+  ]
 %>
 
 <%= render 'folios/folio',
-  :name => 'WikipediaMobile',
-  :url => 'https://github.com/wikimedia/WikipediaMobile',
-  :description => 'The official Wikimedia Foundation mobile application for Wikipedia. Contributed various bugfixes and improvements.'
+  :name => 'SigOpt Python API Client',
+  :url => 'https://github.com/sigopt/sigopt-python',
+  :description => 'Core developer for SigOpt\'s Python API client.'
 %>
 
 <%= render 'folios/folio',
