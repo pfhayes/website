@@ -1,5 +1,4 @@
 .resume_entry {
-  margin-bottom:16px;
 }
 .resume_link {
   display: none;
@@ -13,12 +12,13 @@
 }
 .resume_entry_bullets {
   margin-top:0px;
+  margin-bottom:16px;
 }
 .resume_entry_name {
   font-weight: bold;
 }
 .resume_section {
-  margin-bottom:40px;
+  margin-bottom:30px;
 }
 .resume_section_heading { 
   margin-bottom:20px;
@@ -46,11 +46,13 @@
   display: none;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .holder {
     width:700px;
   }
   .sidebar .contact {
     display: block;
+    padding-left: 0;
+    list-style: none;
   }
 }
