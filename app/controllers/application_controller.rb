@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def render_error
-    render 'home/error', :status => params[:error_code]
+    render template: 'home/error', :status => params[:error_code]
   end
 end
