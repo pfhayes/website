@@ -1,10 +1,20 @@
 <div class="resume_section">
 <p class="resume_section_heading">Work Experience</p>
   <%= render 'resume/entry',
+    :name => 'Software Engineer',
+    :organization => 'Airtable',
+    :start_date => '2023',
+    :end_date => 'present',
+    :show_bullets => true,
+    :bullets => [
+      'Working on Developer Infrastructure',
+    ]
+  %>
+  <%= render 'resume/entry',
     :name => 'Senior Staff Software Engineer',
     :organization => 'YouTube',
     :start_date => '2021',
-    :end_date => 'present',
+    :end_date => '2023',
     :show_bullets => true,
     :bullets => [
       '"Uber Tech Lead" for YouTube\'s Developer Experience team',
