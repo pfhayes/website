@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 6.1.7.2'
+gem 'rails', '~> 6.1.7.4'
 
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
