@@ -39,6 +39,7 @@ sudo journalctl --vacuum-size=1G
 
 sudo systemctl daemon-reload
 sudo mkdir -p /home/ubuntu/website/log
+sudo chmod a+x /home/ubuntu
 sudo chmod 0664 -R /home/ubuntu/website/log
 sudo chmod 0774 /home/ubuntu/website/log
 sudo chown -R ubuntu /home/ubuntu/website/log
