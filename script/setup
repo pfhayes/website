@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # Needs to match patrick-web.service
-export GEM_HOME=/home/ubuntu/.gem/ruby/2.7.0
+export GEM_HOME=/home/ubuntu/.gem/ruby/3.0.2
 
 id -u patrick &>/dev/null || sudo useradd patrick
 
@@ -15,8 +15,8 @@ sudo apt-get update -yq
 sudo apt-get install software-properties-common -yq
 curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
 DISTRO=$(lsb_release -c -s)
-echo "deb https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb-src https://deb.nodesource.com/node_10.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+echo "deb https://deb.nodesource.com/node_18.x ${DISTRO} main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb-src https://deb.nodesource.com/node_18.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
 sudo apt-get update -yq
 sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python3-certbot-nginx -yq
