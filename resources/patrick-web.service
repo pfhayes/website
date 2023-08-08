@@ -3,7 +3,7 @@ WantedBy=multi-user.target
 
 [Service]
 Environment="GEM_HOME=/home/ubuntu/.gem/ruby/3.0.2"
-ExecStart=/usr/bin/bundle exec thin start -p 3000 -e production
+ExecStart=/usr/local/bin/bundle exec thin start -p 3000 -e production
 Restart=always
 WorkingDirectory=/home/ubuntu/website
 User=patrick
