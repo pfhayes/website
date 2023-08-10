@@ -53,27 +53,27 @@ sudo systemctl enable patrick-web
 sudo systemctl daemon-reload
 
 # logging
-LOG_DIR="$SOURCE_DIR/log"
-sudo mkdir -p "$LOG_DIR"
-sudo chmod a+x /home/ubuntu
-sudo chmod 0664 -R "$LOG_DIR"
-sudo chmod 0774 "$LOG_DIR"
-sudo chown -R ubuntu "$LOG_DIR"
-sudo chgrp -R ubuntu "$LOG_DIR"
+rm -rf "$SOURCE_DIR/log"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
-
-# TODO(patrick): Find a better location for this
-mkdir -p /home/ubuntu/website/tmp
-chmod -R 777 /home/ubuntu/website/tmp
 
 # ruby
 sudo gem install bundler
 bundle install
 
 # rails
-# TODO(patrick): Generate config/secrets.yml
-RAILS_ENV=production bundle exec rake assets:precompile
+sudo chmod a+x /home/ubuntu  # Allow `patrick` to cd into $SOURCE_DIR
+export RAILS_ENV=production
+bundle exec rake assets:precompile
+SECRET_KEY_FILE="$RESOURCES_DIR/secret-key"
+if [ ! -f "$SECRET_KEY_FILE" ]; then
+  echo "SECRET_KEY_BASE=$(bundle exec rake secret)" > "$SECRET_KEY_FILE"
+fi
+
+# Sprocket assets - TODO(patrick): Find a better location for this
+RAILS_TMP_DIR="$SOURCE_DIR/tmp"
+mkdir -p "$RAILS_TMP_DIR"
+chmod -R 777 "$RAILS_TMP_DIR"
 
 # restart
 sudo service nginx restart
