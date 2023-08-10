@@ -6,7 +6,9 @@ set -o pipefail
 SOURCE_DIR=/home/ubuntu/website
 RESOURCES_DIR=/home/ubuntu/website/resources
 ENVIRONMENT_FILE="$RESOURCES_DIR/environment-vars"
+set -a
 source $ENVIRONMENT_FILE
+set +a
 echo "source $ENVIRONMENT_FILE" > /home/ubuntu/.bash_profile
 
 id -u patrick &>/dev/null || sudo useradd patrick
