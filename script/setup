@@ -18,8 +18,21 @@ DISTRO=$(lsb_release -c -s)
 echo "deb https://deb.nodesource.com/node_18.x ${DISTRO} main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 echo "deb-src https://deb.nodesource.com/node_18.x ${DISTRO} main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
 
+export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -yq
-sudo apt-get install gcc g++ libxml2 libpq-dev make nginx nodejs ruby ruby-dev ruby-bundler yarn python3-certbot-nginx -yq
+sudo apt-get install -yq \
+  g++ \
+  gcc \
+  libpq-dev \
+  libxml2 \
+  make \
+  nginx \
+  nodejs \
+  python3-certbot-nginx \
+  ruby \
+  ruby-bundler \
+  ruby-dev  \
+  yarn
 sudo apt-get remove certbot -yq
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
@@ -29,13 +42,12 @@ sudo apt autoremove -yq
 
 sudo certbot renew --dry-run
 
-sudo cp resources/nginx.conf /etc/nginx/nginx.conf
-sudo cp resources/patrick-web.service /etc/systemd/system/patrick-web.service
+sudo install -T resources/nginx.conf /etc/nginx/nginx.conf
+sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 sudo systemctl enable patrick-web
 
-# Trim logs
-# TODO(patrick): Put this in cron
-sudo journalctl --vacuum-size=1G
+/home/ubuntu/resources/cron/verify-all
+sudo install -T /home/ubuntu/resources/cron/weekly /etc/cron.weekly/patrick-web
 
 sudo systemctl daemon-reload
 sudo mkdir -p /home/ubuntu/website/log
