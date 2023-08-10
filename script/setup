@@ -3,21 +3,21 @@
 set -e
 set -o pipefail
 
-ENVIRONMENT_FILE=/home/ubuntu/website/resources/environment-vars
+SOURCE_DIR=/home/ubuntu/website
+RESOURCES_DIR=/home/ubuntu/website/resources
+ENVIRONMENT_FILE="$RESOURCES_DIR/environment-vars"
 source $ENVIRONMENT_FILE
 echo "source $ENVIRONMENT_FILE" > /home/ubuntu/.bash_profile
 
 id -u patrick &>/dev/null || sudo useradd patrick
 
-SOURCE_DIR=/home/ubuntu/website
-RESOURCES_DIR=/home/ubuntu/website/resources
-
+# Configure sources
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-
 sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
 sudo install -T "$RESOURCES_DIR/nodesource.list" /etc/apt/sources.list.d/nodesource.list
 
+# Install packages
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -yq
 sudo apt-get install -yq \
@@ -34,28 +34,32 @@ sudo apt-get install -yq \
   ruby-dev  \
   yarn
 sudo apt-get remove certbot -yq
-
 sudo snap install --classic certbot
 sudo snap install core
 sudo snap refresh core
 sudo apt autoremove -yq
-
 sudo /snap/bin/certbot renew --dry-run
 
+# config files
 sudo install -T resources/nginx.conf /etc/nginx/nginx.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
+
+# cron
+"$RESOURCES_DIR/cron/verify-all"
+sudo install -T "$RESOURCES_DIR/cron/weekly" /etc/cron.weekly/patrick-web
+
+# systemctl
 sudo systemctl enable patrick-web
-
-/home/ubuntu/website/resources/cron/verify-all
-sudo install -T /home/ubuntu/resources/cron/weekly /etc/cron.weekly/patrick-web
-
 sudo systemctl daemon-reload
-sudo mkdir -p /home/ubuntu/website/log
+
+# logging
+LOG_DIR="$SOURCE_DIR/log"
+sudo mkdir -p "$LOG_DIR"
 sudo chmod a+x /home/ubuntu
-sudo chmod 0664 -R /home/ubuntu/website/log
-sudo chmod 0774 /home/ubuntu/website/log
-sudo chown -R ubuntu /home/ubuntu/website/log
-sudo chgrp -R ubuntu /home/ubuntu/website/log
+sudo chmod 0664 -R "$LOG_DIR"
+sudo chmod 0774 "$LOG_DIR"
+sudo chown -R ubuntu "$LOG_DIR"
+sudo chgrp -R ubuntu "$LOG_DIR"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
 
@@ -63,13 +67,15 @@ sudo chown patrick /var/log/patrick-web.log
 mkdir -p /home/ubuntu/website/tmp
 chmod -R 777 /home/ubuntu/website/tmp
 
+# ruby
 sudo gem install bundler
 bundle install
 
+# rails
 # TODO(patrick): Generate config/secrets.yml
-
 RAILS_ENV=production bundle exec rake assets:precompile
 
+# restart
 sudo service nginx restart
 sudo service patrick-web restart
 
