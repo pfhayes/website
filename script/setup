@@ -38,7 +38,13 @@ sudo snap install --classic certbot
 sudo snap install core
 sudo snap refresh core
 sudo apt autoremove -yq
-sudo /snap/bin/certbot renew --dry-run
+
+# certs
+DID_RENEW_CERTS=false
+if [ -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem]; then
+  sudo /snap/bin/certbot renew --dry-run
+  DID_RENEW_CERTS=true
+fi
 
 # config files
 sudo install -T resources/nginx.conf /etc/nginx/nginx.conf
@@ -57,8 +63,13 @@ rm -rf "$SOURCE_DIR/log"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
 
-# ruby
+# ruby - small instances may need swap space for `bundle install`
 sudo gem install bundler
+SWAPFILE=/swapfile
+sudo fallocate -l 1G "$SWAPFILE"
+sudo chmod 600 "$SWAPFILE"
+sudo mkswap "$SWAPFILE"
+sudo swapon "$SWAPFILE"
 bundle install
 
 # rails
@@ -79,4 +90,10 @@ chmod -R 777 "$RAILS_TMP_DIR"
 sudo service nginx restart
 sudo service patrick-web restart
 
-# TODO(patrick): Initialize certbot
+# TODO(patrick): Automate setting up certificates on a new machine
+if "$DID_RENEW_CERTS"; then
+  echo "========================================================================"
+  echo "Certificates were not renewed - is this because this is a fresh machine?"
+  echo "Certificates must be manually copied from an existing instance."
+  echo "========================================================================"
+fi
