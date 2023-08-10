@@ -70,8 +70,8 @@ if [ ! -f "$SWAPFILE" ]; then
   sudo fallocate -l 1G "$SWAPFILE"
   sudo chmod 600 "$SWAPFILE"
   sudo mkswap "$SWAPFILE"
+  sudo swapon "$SWAPFILE"
 fi
-sudo swapon "$SWAPFILE"
 bundle install
 
 # rails
