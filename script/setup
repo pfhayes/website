@@ -91,11 +91,11 @@ mkdir -p "$RAILS_TMP_DIR"
 chmod -R 777 "$RAILS_TMP_DIR"
 
 # restart
-sudo service nginx restart
 sudo service patrick-web restart
 
 # TODO(patrick): Automate setting up certificates on a new machine
 if "$DID_RENEW_CERTS"; then
+  sudo service nginx restart
   echo "========================================================================"
   echo "Certificates were not renewed - is this because this is a fresh machine?"
   echo "Certificates must be manually copied from an existing instance."
