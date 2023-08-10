@@ -68,9 +68,9 @@ sudo gem install bundler
 SWAPFILE=/swapfile
 if [ ! -f "$SWAPFILE" ]; then
   sudo fallocate -l 1G "$SWAPFILE"
+  sudo chmod 600 "$SWAPFILE"
+  sudo mkswap "$SWAPFILE"
 fi
-sudo chmod 600 "$SWAPFILE"
-sudo mkswap "$SWAPFILE"
 sudo swapon "$SWAPFILE"
 bundle install
 
