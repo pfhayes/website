@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # Needs to match patrick-web.service
-export GEM_HOME=/home/ubuntu/.gem/ruby/3.0.2
+source /home/ubuntu/website/resources/environment-vars
 
 id -u patrick &>/dev/null || sudo useradd patrick
 
