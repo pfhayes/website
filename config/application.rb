@@ -26,7 +26,6 @@ module Website
 
     config.public_file_server.enabled = true
     config.serve_static_assets = true
-    config.log_path = "/var/log/patrick-web.log"
 
     # Configuration for the application, engines, and railties goes here.
     #

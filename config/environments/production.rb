@@ -44,6 +44,7 @@ Rails.application.configure do
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
   config.logger = Logger.new(STDOUT)
+  config.log_path = "/var/log/patrick-web.log"
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
