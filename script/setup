@@ -48,7 +48,8 @@ if sudo test -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem; then
 fi
 
 # config files
-sudo install -T resources/nginx.conf /etc/nginx/nginx.conf
+sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
+sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
 # cron
