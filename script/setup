@@ -42,7 +42,7 @@ sudo apt autoremove -yq
 
 # certs
 DID_RENEW_CERTS=false
-if [ -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem ]; then
+if sudo test -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem; then
   sudo /snap/bin/certbot renew --dry-run
   DID_RENEW_CERTS=true
 fi
