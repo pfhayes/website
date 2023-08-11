@@ -41,6 +41,7 @@ sudo snap refresh core
 sudo apt autoremove -yq
 
 # config files
+sudo rm -f /etc/nginx/sites-enabled/default
 sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
 sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
