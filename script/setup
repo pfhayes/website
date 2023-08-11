@@ -20,9 +20,8 @@ sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
 sudo install -T "$RESOURCES_DIR/nodesource.list" /etc/apt/sources.list.d/nodesource.list
 
 # Install packages
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update -yq
-sudo apt-get install -yq \
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -yq
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   g++ \
   gcc \
   libpq-dev \
@@ -35,7 +34,7 @@ sudo apt-get install -yq \
   ruby-bundler \
   ruby-dev  \
   yarn
-sudo apt-get remove certbot -yq
+sudo DEBIAN_FRONTEND=noninteractive apt-get remove certbot -yq
 sudo snap install --classic certbot
 sudo snap install core
 sudo snap refresh core
