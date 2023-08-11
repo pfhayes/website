@@ -40,17 +40,17 @@ sudo snap install core
 sudo snap refresh core
 sudo apt autoremove -yq
 
+# config files
+sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
+sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
+sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
+
 # certs
 DID_RENEW_CERTS=false
 if sudo test -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem; then
   sudo /snap/bin/certbot renew --dry-run
   DID_RENEW_CERTS=true
 fi
-
-# config files
-sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
-sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
-sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
 # cron
 "$RESOURCES_DIR/cron/verify-all"
