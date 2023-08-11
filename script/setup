@@ -84,11 +84,6 @@ if [ ! -f "$SECRET_KEY_FILE" ]; then
   echo "SECRET_KEY_BASE=$(bundle exec rake secret)" > "$SECRET_KEY_FILE"
 fi
 
-# Sprocket assets - TODO(patrick): Find a better location for this
-RAILS_TMP_DIR="$SOURCE_DIR/tmp"
-mkdir -p "$RAILS_TMP_DIR"
-chmod -R 777 "$RAILS_TMP_DIR"
-
 # restart
 sudo service patrick-web restart
 
