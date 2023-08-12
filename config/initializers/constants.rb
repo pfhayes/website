@@ -9,7 +9,7 @@ module Links
   Foursquare = "https://foursquare.com/pfjhayes"
   Github = "https://github.com/pfhayes"
   Linkedin = "https://www.linkedin.com/in/pfjhayes"
-  SigOpt = "https://sigopt.com/"
+  SigOpt = "https://www.intel.com/content/www/us/en/newsroom/news/sigopt-to-scale-ai-productivity-performance.html#gs.4bve5c"
   Mastodon = "https://mstdn.ca/@pfhayes"
   Twitter = "https://twitter.com/pfjhayes"
   YouTube = "https://youtube.com/"
