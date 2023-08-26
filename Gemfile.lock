@@ -106,7 +106,7 @@ GEM
     nokogiri (1.15.3-arm64-darwin)
       racc (~> 1.4)
     pkg-config (1.5.2)
-    puma (6.3.0)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
