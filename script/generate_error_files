@@ -2,4 +2,5 @@
 
 pushd ~/dev/web/personal
 curl http://localhost:3000/bad/url/so/bad | sed 's/localhost:3000/patrickhay.es/g' >public/404.html
+curl http://localhost:3000/badgateway | sed 's/localhost:3000/patrickhay.es/g' >public/502.html
 popd

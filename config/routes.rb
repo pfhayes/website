@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     get 'vimrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.vimrc')
 
     # Nothing left, route to error page
+    get 'badgateway' => 'application#render_502', :as => :badgateway
     get '*wild' => 'application#render_404', :as => :error_404
 end
