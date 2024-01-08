@@ -99,14 +99,14 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
     pkg-config (1.5.5)
-    puma (6.4.0)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -167,7 +167,7 @@ PLATFORMS
 
 DEPENDENCIES
   pkg-config (~> 1.5.2)
-  puma (~> 6.3)
+  puma (~> 6.4)
   rails (~> 7.0.8)
   sprockets-rails (~> 3.4.2)
   thin (~> 1.8.2)
