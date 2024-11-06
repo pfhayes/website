@@ -95,6 +95,7 @@ if "$DID_RENEW_CERTS"; then
 else
   echo "========================================================================"
   echo "Certificates were not renewed - is this because this is a fresh machine?"
-  echo "Certificates must be manually copied from an existing instance."
+  echo "Certificates must be manually set up."
+  echo "Run \`sudo certbot\`."
   echo "========================================================================"
 fi
