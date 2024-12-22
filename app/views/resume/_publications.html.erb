@@ -1,5 +1,13 @@
 <div class="resume_section">
-<p class="resume_section_heading">Publications</p>
+<p class="resume_section_heading">Writings</p>
+  <%= render 'resume/publication',
+    :full => full,
+    :authors => 'Michael Mitchell, Patrick Hayes',
+    :name => 'Scaling TypeScript to thousands of projects',
+    :link => 'https://medium.com/airtable-eng/a-leap-in-the-evolution-of-airtables-codebase-scaling-typescript-to-thousands-of-projects-734326c3a553',
+    :organization => 'Airtable Eng Blog',
+    :end_date => '2024'
+  %>
   <%= render 'resume/publication',
     :full => full,
     :authors => 'Ian Dewancker, Michael McCourt, Scott Clark, Patrick Hayes, Alexandra Johnson, George Ke',
