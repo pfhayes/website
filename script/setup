@@ -48,7 +48,7 @@ sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.se
 
 # certs
 DID_RENEW_CERTS=false
-if sudo test -f /etc/letsencrypt/live/patrickhay.es/fullchain.pem; then
+if sudo test -f /etc/letsencrypt/renewal/patrickhay.es-0001.conf; then
   sudo certbot renew
   DID_RENEW_CERTS=true
 fi
