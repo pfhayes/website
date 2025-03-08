@@ -46,6 +46,8 @@ sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
 sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
+sudo nginx -t
+
 # certs
 DID_RENEW_CERTS=false
 if sudo test -f /etc/letsencrypt/renewal/patrickhay.es-0001.conf; then
