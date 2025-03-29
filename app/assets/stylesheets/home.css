@@ -9,11 +9,11 @@
 }
 
 #bio_img {
-  background-image: url('/assets/images/yo.png');
+  background-image: url('/assets/images/yo.jpg');
   background-repeat: no-repeat;
-  background-size: 188px;
+  background-size: 165px;
   height: 165px;
-  width: 188px;
+  width: 165px;
 }
 
 #tail {
