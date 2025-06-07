@@ -1,6 +1,5 @@
 .bundle
 .env
-.ruby-version
 db/personal_development
 log/*.log
 tmp/
