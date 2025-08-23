@@ -25,6 +25,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   g++ \
   gcc \
   libpq-dev \
+  libyaml-dev \
   libxml2 \
   make \
   nginx \
