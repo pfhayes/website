@@ -12,7 +12,7 @@
     name
   end
   %>.</span>
-  <% if full %>
+  <% if full && defined?(authors) && authors %>
     <%= authors %>.
   <% end %>
   <% if organization %>
