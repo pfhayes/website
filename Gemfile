@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.2.2.2'
+gem 'rails', '~> 8.0.0'
 gem 'sprockets-rails', '~> 3.4.2'
 
 # Use Puma as the app server
