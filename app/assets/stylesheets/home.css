@@ -9,12 +9,14 @@
 }
 
 #bio_img {
-  background-image: url('/assets/images/yo.png');
+  background-image: url('/assets/images/yo-small.png');
   background-repeat: no-repeat;
   background-size: 165px;
   margin-bottom: 10px;
   height: 165px;
   width: 165px;
+  cursor: pointer;
+  display: block;
 }
 
 #tail {
