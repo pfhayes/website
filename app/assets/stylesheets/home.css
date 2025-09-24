@@ -9,7 +9,7 @@
 }
 
 #bio_img {
-  background-image: url('/assets/images/yo-small.png');
+  background-image: asset-url('yo-small.png');
   background-repeat: no-repeat;
   background-size: 165px;
   margin-bottom: 10px;
