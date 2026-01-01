@@ -138,7 +138,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    puma (6.4.3)
+    puma (7.1.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.4)
@@ -232,7 +232,7 @@ PLATFORMS
 DEPENDENCIES
   concurrent-ruby (= 1.3.4)
   pkg-config (~> 1.5.2)
-  puma (~> 6.4.2)
+  puma (~> 7.1.0)
   rails (~> 8.1.1)
   sassc-rails (~> 2.1.2)
   sprockets-rails (~> 3.5.2)
