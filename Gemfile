@@ -16,4 +16,4 @@ gem 'pkg-config', '~> 1.6.5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # https://stackoverflow.com/a/79361034
-gem 'concurrent-ruby', '1.3.4'
+gem 'concurrent-ruby', '~> 1.3.6'
