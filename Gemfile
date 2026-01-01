@@ -10,7 +10,7 @@ gem 'sassc-rails', '~> 2.1.2'
 gem 'puma', '~> 7.1.0'
 gem 'thin', '~> 2.0.1'
 
-gem 'pkg-config', '~> 1.5.2'
+gem 'pkg-config', '~> 1.6.5'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
