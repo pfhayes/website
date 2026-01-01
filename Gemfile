@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 8.1.1'
-gem 'sprockets-rails', '~> 3.4.2'
+gem 'sprockets-rails', '~> 3.5.2'
 
 gem 'terser', '~> 1.2.6'
 gem 'sassc-rails', '~> 2.1.2'
