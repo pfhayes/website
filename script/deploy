@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+SOURCE_DIR=/home/ubuntu/website
+
+ssh -A patrickhay.es "cd $SOURCE_DIR && git pull && script/setup"

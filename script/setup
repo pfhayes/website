@@ -3,6 +3,11 @@
 set -e
 set -o pipefail
 
+if [[ "$(uname)" != "Linux" ]]; then
+  echo >&2 "Error: script/setup must be run on the remote machine."
+  exit 1
+fi
+
 SOURCE_DIR=/home/ubuntu/website
 RESOURCES_DIR=/home/ubuntu/website/resources
 ENVIRONMENT_FILE="$RESOURCES_DIR/environment-vars"
@@ -21,6 +26,7 @@ sudo install -T "$RESOURCES_DIR/nodesource.list" /etc/apt/sources.list.d/nodesou
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -yq
+sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   g++ \
   gcc \
@@ -101,4 +107,9 @@ else
   echo "Certificates must be manually set up."
   echo "Run \`sudo certbot\`."
   echo "========================================================================"
+fi
+
+if [ -f /var/run/reboot-required ]; then
+  echo "Reboot required — rebooting in 5 seconds."
+  (sleep 5 && sudo reboot) &
 fi
