@@ -12,8 +12,9 @@ Rails.application.routes.draw do
     get 'gh' => redirect(Links::Github)
     get 'fo' => redirect(Links::Foursquare)
 
-    get 'zshrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.zshrc')
+    get 'start' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/remote.sh')
     get 'vimrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.vimrc')
+    get 'zshrc' => redirect('https://raw.githubusercontent.com/pfhayes/dotfiles/master/.zshrc')
 
     # Nothing left, route to error page
     get 'badgateway' => 'application#render_502', :as => :badgateway
