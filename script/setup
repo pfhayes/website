@@ -107,7 +107,7 @@ export RAILS_ENV=production
 bundle exec rake assets:precompile
 SECRET_KEY_FILE="$RESOURCES_DIR/secret-key"
 if [ ! -f "$SECRET_KEY_FILE" ]; then
-  echo "SECRET_KEY_BASE=$(bundle exec rake secret)" > "$SECRET_KEY_FILE"
+  echo "SECRET_KEY_BASE=$(bundle exec rails secret)" > "$SECRET_KEY_FILE"
 fi
 
 # restart
