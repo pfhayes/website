@@ -50,16 +50,27 @@ sudo apt autoremove -yq
 # config files
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
-sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
-sudo nginx -t
-
-# certs
-DID_RENEW_CERTS=false
-if sudo test -f /etc/letsencrypt/renewal/patrickhay.es-0001.conf; then
+# certs — on a fresh machine we need an HTTP-only nginx to satisfy the ACME challenge,
+# then swap in the full SSL config once the cert exists.
+if sudo test -d /etc/letsencrypt/live/patrickhay.es; then
+  sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
+  sudo nginx -t
   sudo certbot renew
-  DID_RENEW_CERTS=true
+else
+  sudo tee /etc/nginx/sites-enabled/patrick-web.conf > /dev/null << 'NGINXEOF'
+server {
+    server_name patrickhay.es;
+    listen 80;
+    root /var/www/html;
+}
+NGINXEOF
+  sudo nginx -t
+  sudo service nginx start 2>/dev/null || sudo service nginx reload
+  sudo certbot certonly --nginx -d patrickhay.es --non-interactive --agree-tos --email p@phay.es
+  sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
+  sudo nginx -t
 fi
 
 # cron
@@ -97,17 +108,7 @@ fi
 
 # restart
 sudo service patrick-web restart
-
-# TODO(patrick): Automate setting up certificates on a new machine
-if "$DID_RENEW_CERTS"; then
-  sudo service nginx restart
-else
-  echo "========================================================================"
-  echo "Certificates were not renewed - is this because this is a fresh machine?"
-  echo "Certificates must be manually set up."
-  echo "Run \`sudo certbot\`."
-  echo "========================================================================"
-fi
+sudo service nginx restart
 
 if [ -f /var/run/reboot-required ]; then
   echo "Reboot required — rebooting in 5 seconds."

@@ -4,5 +4,6 @@ set -e
 set -o pipefail
 
 SOURCE_DIR=/home/ubuntu/website
+HOST="${1:-patrickhay.es}"
 
-ssh -A patrickhay.es "cd $SOURCE_DIR && git pull && script/setup"
+ssh -A "$HOST" "cd $SOURCE_DIR && git pull && script/setup"
