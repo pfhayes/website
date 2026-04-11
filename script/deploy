@@ -6,6 +6,4 @@ set -o pipefail
 SOURCE_DIR=/home/ubuntu/website
 HOST="${1:-patrickhay.es}"
 
-CLOUDFLARE_API_TOKEN="$(op item get zsccex3msyf3e4pruc6xyqh4ra --fields password --reveal || true)"
-[[ -n "$CLOUDFLARE_API_TOKEN" ]] || { echo "Error: could not read Cloudflare API token from 1Password. Are you signed in? Try: op signin"; exit 1; }
-ssh -A "$HOST" "export CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN; cd $SOURCE_DIR && git pull && script/setup"
+ssh -A "$HOST" "cd $SOURCE_DIR && git pull && script/setup"

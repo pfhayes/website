@@ -55,13 +55,8 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
-# certs — DNS-01 via Cloudflare, so this works before DNS cutover
-sudo mkdir -p /etc/letsencrypt
-sudo tee /etc/letsencrypt/cloudflare.ini > /dev/null << EOF
-dns_cloudflare_api_token = $CLOUDFLARE_API_TOKEN
-EOF
-sudo chmod 600 /etc/letsencrypt/cloudflare.ini
-
+# certs — DNS-01 via Cloudflare. /etc/letsencrypt/cloudflare.ini is placed by
+# script/provision on fresh servers and persists across deploys.
 if sudo test -d /etc/letsencrypt/live/patrickhay.es; then
   sudo certbot renew
 else

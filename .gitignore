@@ -23,3 +23,4 @@ public/assets/*
 yarn.lock
 
 .byebug_history
+resources/secret-key
