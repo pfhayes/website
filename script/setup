@@ -43,6 +43,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   yarn
 sudo DEBIAN_FRONTEND=noninteractive apt-get remove certbot -yq
 sudo snap install --classic certbot
+sudo snap set certbot trust-plugin-with-root=ok
+sudo snap install certbot-dns-cloudflare
+sudo snap connect certbot:plugin certbot-dns-cloudflare
 sudo snap install core
 sudo snap refresh core
 sudo apt autoremove -yq
@@ -52,26 +55,27 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo install -T resources/nginx-parent.conf /etc/nginx/nginx.conf
 sudo install -T resources/patrick-web.service /etc/systemd/system/patrick-web.service
 
-# certs — on a fresh machine we need an HTTP-only nginx to satisfy the ACME challenge,
-# then swap in the full SSL config once the cert exists.
+# certs — DNS-01 via Cloudflare, so this works before DNS cutover
+sudo mkdir -p /etc/letsencrypt
+sudo tee /etc/letsencrypt/cloudflare.ini > /dev/null << EOF
+dns_cloudflare_api_token = $CLOUDFLARE_API_TOKEN
+EOF
+sudo chmod 600 /etc/letsencrypt/cloudflare.ini
+
 if sudo test -d /etc/letsencrypt/live/patrickhay.es; then
-  sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
-  sudo nginx -t
   sudo certbot renew
 else
-  sudo tee /etc/nginx/sites-enabled/patrick-web.conf > /dev/null << 'NGINXEOF'
-server {
-    server_name patrickhay.es;
-    listen 80;
-    root /var/www/html;
-}
-NGINXEOF
-  sudo nginx -t
-  sudo service nginx start 2>/dev/null || sudo service nginx reload
-  sudo certbot certonly --nginx -d patrickhay.es --non-interactive --agree-tos --email p@phay.es
-  sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
-  sudo nginx -t
+  sudo certbot certonly \
+    --dns-cloudflare \
+    --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
+    -d patrickhay.es \
+    --non-interactive \
+    --agree-tos \
+    --email p@phay.es
 fi
+
+sudo install -T resources/nginx.conf /etc/nginx/sites-enabled/patrick-web.conf
+sudo nginx -t
 
 # cron
 "$RESOURCES_DIR/cron/verify-all"
