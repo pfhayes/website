@@ -1,0 +1,242 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+SECURITY_GROUP="sg-aaa772d5"  # web
+DEFAULT_INSTANCE_TYPE="t4g.micro"
+DEFAULT_PUBKEY="$HOME/.ssh/id_ed25519.pub"
+
+# ── helpers ────────────────────────────────────────────────────────────────────
+
+usage() {
+  echo "Usage: $0 [--ami AMI_ID] [--type INSTANCE_TYPE] [--pubkey PATH]"
+  echo ""
+  echo "  --ami     AMI ID to launch (default: latest Ubuntu 24.04 LTS arm64)"
+  echo "  --type    EC2 instance type (default: $DEFAULT_INSTANCE_TYPE)"
+  echo "  --pubkey  Local public key to install on the instance (default: $DEFAULT_PUBKEY)"
+  echo ""
+  echo "Omitted flags are prompted interactively."
+  exit 1
+}
+
+require_cmd() {
+  command -v "$1" &>/dev/null || { echo "Error: '$1' is required but not installed."; exit 1; }
+}
+
+latest_ubuntu_ami() {
+  aws ec2 describe-images \
+    --owners 099720109477 \
+    --filters \
+      "Name=name,Values=ubuntu/images/hvm-ssd-gp3/ubuntu-resolute-26.04-arm64-server-*" \
+      "Name=state,Values=available" \
+      "Name=architecture,Values=arm64" \
+    --query "sort_by(Images, &CreationDate)[-1].ImageId" \
+    --output text
+}
+
+# KNOWN_HOSTS_FILE is set after TMPDIR_KEY is created; both helpers reference it
+# at call time so definition order doesn't matter.
+
+ssh_into() {
+  # Usage: ssh_into [-i keyfile] [-o opt] [-A] user@host [command...]
+  local extra_args=()
+  if [[ "$1" == "-i" ]]; then
+    extra_args=(-i "$2")
+    shift 2
+  fi
+  ssh -o StrictHostKeyChecking=yes \
+      -o UserKnownHostsFile="$KNOWN_HOSTS_FILE" \
+      -o ConnectTimeout=10 \
+      "${extra_args[@]}" "$@"
+}
+
+scp_to() {
+  # Usage: scp_to [-i keyfile] src user@host:dest
+  local extra_args=()
+  if [[ "$1" == "-i" ]]; then
+    extra_args=(-i "$2")
+    shift 2
+  fi
+  scp -o StrictHostKeyChecking=yes \
+      -o UserKnownHostsFile="$KNOWN_HOSTS_FILE" \
+      "${extra_args[@]}" "$@"
+}
+
+# ── arg parsing ────────────────────────────────────────────────────────────────
+
+AMI=""
+INSTANCE_TYPE=""
+PUBKEY=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --ami)    AMI="$2";           shift 2 ;;
+    --type)   INSTANCE_TYPE="$2"; shift 2 ;;
+    --pubkey) PUBKEY="$2";        shift 2 ;;
+    -h|--help) usage ;;
+    *) echo "Unknown option: $1"; usage ;;
+  esac
+done
+
+# ── prereqs ────────────────────────────────────────────────────────────────────
+
+require_cmd aws
+require_cmd ssh-keygen
+require_cmd ssh
+require_cmd op
+
+CLOUDFLARE_API_TOKEN="$(op item get zsccex3msyf3e4pruc6xyqh4ra --fields password --reveal || true)"
+[[ -n "$CLOUDFLARE_API_TOKEN" ]] || { echo "Error: could not read Cloudflare API token from 1Password. Are you signed in? Try: op signin"; exit 1; }
+
+REGION="${AWS_DEFAULT_REGION:-$(aws configure get region 2>/dev/null || echo "us-east-1")}"
+export AWS_DEFAULT_REGION="$REGION"
+echo "AWS region: $REGION"
+
+# ── interactive prompts ────────────────────────────────────────────────────────
+
+if [[ -z "$AMI" ]]; then
+  echo -n "Fetching latest Ubuntu 26.04 LTS AMI … "
+  LATEST_AMI="$(latest_ubuntu_ami)"
+  echo "$LATEST_AMI"
+  read -rp "AMI ID [$LATEST_AMI]: " AMI_INPUT
+  AMI="${AMI_INPUT:-$LATEST_AMI}"
+fi
+
+if [[ -z "$INSTANCE_TYPE" ]]; then
+  read -rp "Instance type [$DEFAULT_INSTANCE_TYPE]: " TYPE_INPUT
+  INSTANCE_TYPE="${TYPE_INPUT:-$DEFAULT_INSTANCE_TYPE}"
+fi
+
+if [[ -z "$PUBKEY" ]]; then
+  read -rp "Local public key [$DEFAULT_PUBKEY]: " PUBKEY_INPUT
+  PUBKEY="${PUBKEY_INPUT:-$DEFAULT_PUBKEY}"
+fi
+
+[[ -f "$PUBKEY" ]] || { echo "Error: public key not found: $PUBKEY"; exit 1; }
+
+# ── generate one-off keypair ───────────────────────────────────────────────────
+
+TMPDIR_KEY="$(mktemp -d)"
+TEMP_KEY="$TMPDIR_KEY/provision"
+TEMP_KEY_NAME="provision-oneoff-$$"
+KNOWN_HOSTS_FILE="$TMPDIR_KEY/known_hosts"
+touch "$KNOWN_HOSTS_FILE"
+
+SUCCEEDED=false
+
+cleanup() {
+  echo "Cleaning up temporary key…"
+  rm -rf "$TMPDIR_KEY"
+  aws ec2 delete-key-pair --key-name "$TEMP_KEY_NAME" 2>/dev/null || true
+  if [[ "$SUCCEEDED" != "true" && -n "$INSTANCE_ID" ]]; then
+    echo "Provisioning failed — terminating instance $INSTANCE_ID…"
+    aws ec2 terminate-instances --instance-ids "$INSTANCE_ID" --output text >/dev/null
+  fi
+}
+trap cleanup EXIT
+
+echo "Generating temporary key pair…"
+ssh-keygen -t ed25519 -f "$TEMP_KEY" -N "" -C "$TEMP_KEY_NAME" -q
+
+aws ec2 import-key-pair \
+  --key-name "$TEMP_KEY_NAME" \
+  --public-key-material "fileb://${TEMP_KEY}.pub" \
+  --output text >/dev/null
+
+echo "Temporary key imported as: $TEMP_KEY_NAME"
+
+# ── confirm and launch ─────────────────────────────────────────────────────────
+
+echo ""
+echo "Launching instance:"
+echo "  AMI:            $AMI"
+echo "  Instance type:  $INSTANCE_TYPE"
+echo "  Security group: $SECURITY_GROUP"
+echo "  Region:         $REGION"
+echo "  Public key:     $PUBKEY"
+echo ""
+read -rp "Proceed? [Y/n] " CONFIRM
+[[ "$CONFIRM" =~ ^[Nn]$ ]] && { echo "Aborted."; exit 0; }
+
+echo "Launching EC2 instance…"
+INSTANCE_ID=$(aws ec2 run-instances \
+  --image-id "$AMI" \
+  --instance-type "$INSTANCE_TYPE" \
+  --key-name "$TEMP_KEY_NAME" \
+  --security-group-ids "$SECURITY_GROUP" \
+  --count 1 \
+  --query "Instances[0].InstanceId" \
+  --output text)
+
+echo "Instance ID: $INSTANCE_ID"
+
+# ── wait for running state ─────────────────────────────────────────────────────
+
+echo "Waiting for instance to enter running state…"
+aws ec2 wait instance-running --instance-ids "$INSTANCE_ID"
+
+PUBLIC_IP=$(aws ec2 describe-instances \
+  --instance-ids "$INSTANCE_ID" \
+  --query "Reservations[0].Instances[0].PublicIpAddress" \
+  --output text)
+
+echo "Instance is running at: $PUBLIC_IP"
+
+# ── record host key (TOFU) ────────────────────────────────────────────────────
+# Use ssh-keyscan as the SSH readiness check. The recorded key is used for all
+# subsequent connections — no StrictHostKeyChecking=no anywhere.
+
+echo "Waiting for SSH and recording host key…"
+for i in $(seq 1 30); do
+  if ssh-keyscan -H "$PUBLIC_IP" 2>/dev/null >> "$KNOWN_HOSTS_FILE" && [[ -s "$KNOWN_HOSTS_FILE" ]]; then
+    break
+  fi
+  if [[ $i -eq 30 ]]; then
+    echo "Error: SSH did not become available after 5 minutes."; exit 1
+  fi
+  > "$KNOWN_HOSTS_FILE"  # clear partial output before retrying
+  echo "  attempt $i/30 – retrying in 10s…"
+  sleep 10
+done
+
+# Persist to user's known_hosts so direct SSH connections work after provision
+cat "$KNOWN_HOSTS_FILE" >> ~/.ssh/known_hosts
+echo "Host key recorded."
+
+# ── install Cloudflare credentials ────────────────────────────────────────────
+# Write the ini file locally and scp it — token never appears on a command line.
+
+echo "Installing Cloudflare credentials on instance…"
+CLOUDFLARE_INI="$TMPDIR_KEY/cloudflare.ini"
+printf 'dns_cloudflare_api_token = %s\n' "$CLOUDFLARE_API_TOKEN" > "$CLOUDFLARE_INI"
+chmod 600 "$CLOUDFLARE_INI"
+scp_to -i "$TEMP_KEY" "$CLOUDFLARE_INI" "ubuntu@$PUBLIC_IP:/home/ubuntu/cloudflare.ini.tmp"
+ssh_into -i "$TEMP_KEY" "ubuntu@$PUBLIC_IP" \
+  "sudo mkdir -p /etc/letsencrypt && sudo mv /home/ubuntu/cloudflare.ini.tmp /etc/letsencrypt/cloudflare.ini && sudo chmod 600 /etc/letsencrypt/cloudflare.ini"
+
+# ── swap SSH keys ──────────────────────────────────────────────────────────────
+
+echo "Installing local public key on instance…"
+LOCAL_PUBKEY_CONTENT="$(cat "$PUBKEY")"
+ssh_into -i "$TEMP_KEY" "ubuntu@$PUBLIC_IP" \
+  "echo $(printf '%q' "$LOCAL_PUBKEY_CONTENT") > ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+
+echo "Key installed. Reconnecting via ssh-agent…"
+ssh_into -A -o BatchMode=yes "ubuntu@$PUBLIC_IP" true
+
+# ── clone repo if needed ──────────────────────────────────────────────────────
+
+echo "Ensuring repo is cloned on instance…"
+ssh_into -A "ubuntu@$PUBLIC_IP" \
+  'ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null; [[ -d /home/ubuntu/website ]] || git clone git@github.com:pfhayes/website.git /home/ubuntu/website'
+
+# ── deploy ─────────────────────────────────────────────────────────────────────
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "Running deploy to $PUBLIC_IP…"
+"$SCRIPT_DIR/deploy" "ubuntu@$PUBLIC_IP"
+
+SUCCEEDED=true
+echo ""
+echo "Done. Instance $INSTANCE_ID is live at $PUBLIC_IP"
