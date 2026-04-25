@@ -31,7 +31,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   gcc \
   libpq-dev \
   libyaml-dev \
-  libxml2 \
+  libxml2-dev \
   make \
   nginx \
   nodejs \
