@@ -19,10 +19,9 @@ echo "source $ENVIRONMENT_FILE" > /home/ubuntu/.bash_profile
 id -u patrick &>/dev/null || sudo useradd patrick
 
 # Configure sources
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/yarn.gpg
 sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
-sudo install -T "$RESOURCES_DIR/nodesource.list" /etc/apt/sources.list.d/nodesource.list
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -yq
