@@ -20,7 +20,7 @@ id -u patrick &>/dev/null || sudo useradd patrick
 
 # Configure sources
 sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/yarn.gpg
+curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/yarn.gpg
 sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
 
 # Install packages
