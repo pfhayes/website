@@ -57,6 +57,8 @@ sudo snap connect certbot:plugin certbot-dns-cloudflare
 sudo snap install core
 sudo snap refresh core
 sudo apt autoremove -yq
+sudo apt-get clean
+sudo snap set system refresh.retain=2  # don't hoard old snap revisions
 
 # config files
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -120,7 +122,11 @@ fi
 export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init - bash)"
 # -j1: parallel cc1 processes OOM on a 1GB instance
-MAKE_OPTS="-j1" rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
+# TMPDIR: /tmp is a small tmpfs; the build tree needs >1GB, put it on disk
+sudo install -d -o ubuntu /var/tmp/ruby-build
+TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" \
+  rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
+rm -rf /var/tmp/ruby-build
 
 gem update --system  # ships a matching default bundler
 bundle install

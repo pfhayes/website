@@ -165,6 +165,7 @@ INSTANCE_ID=$(aws ec2 run-instances \
   --instance-type "$INSTANCE_TYPE" \
   --key-name "$TEMP_KEY_NAME" \
   --security-group-ids "$SECURITY_GROUP" \
+  --block-device-mappings '[{"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":16,"VolumeType":"gp3","DeleteOnTermination":true}}]' \
   --count 1 \
   --query "Instances[0].InstanceId" \
   --output text)
