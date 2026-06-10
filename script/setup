@@ -132,6 +132,7 @@ eval "$(rbenv init - bash)"
 # --disable-install-doc: rdoc/ri generation is slow and disk-hungry
 sudo rm -rf /var/tmp/ruby-build
 sudo install -d -o ubuntu /var/tmp/ruby-build
+rm -f "$RBENV_ROOT/shims/.rbenv-shim"  # stale rehash lock from an interrupted run
 TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" RUBY_CONFIGURE_OPTS="--disable-install-doc" \
   rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
 sudo rm -rf /var/tmp/ruby-build
