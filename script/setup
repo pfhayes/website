@@ -93,10 +93,13 @@ rm -rf "$SOURCE_DIR/log"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
 
-# swap - small instances need it to compile ruby and native gems
+# swap - small instances need it to compile ruby and native gems;
+# resize if an older deploy created a smaller swapfile
 SWAPFILE=/swapfile
-if [ ! -f "$SWAPFILE" ]; then
-  sudo fallocate -l 1G "$SWAPFILE"
+SWAP_BYTES=$((2 * 1024 * 1024 * 1024))
+if [[ "$(stat -c %s "$SWAPFILE" 2>/dev/null || echo 0)" -lt "$SWAP_BYTES" ]]; then
+  sudo swapoff "$SWAPFILE" 2>/dev/null || true
+  sudo fallocate -l "$SWAP_BYTES" "$SWAPFILE"
   sudo chmod 600 "$SWAPFILE"
   sudo mkswap "$SWAPFILE"
   sudo swapon "$SWAPFILE"
@@ -116,7 +119,8 @@ else
 fi
 export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init - bash)"
-rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
+# -j1: parallel cc1 processes OOM on a 1GB instance
+MAKE_OPTS="-j1" rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
 
 gem update --system  # ships a matching default bundler
 bundle install
