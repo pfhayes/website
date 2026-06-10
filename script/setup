@@ -136,6 +136,7 @@ rm -f "$RBENV_ROOT/shims/.rbenv-shim"  # stale rehash lock from an interrupted r
 TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" RUBY_CONFIGURE_OPTS="--disable-install-doc" \
   rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
 sudo rm -rf /var/tmp/ruby-build
+rbenv rehash  # --skip-existing skips the rehash when the version is already built
 
 gem update --system  # ships a matching default bundler
 bundle install
