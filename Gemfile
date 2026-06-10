@@ -7,7 +7,7 @@ gem 'terser', '~> 1.2.6'
 gem 'sassc-rails', '~> 2.1.2'
 
 # Use Puma as the app server
-gem 'puma', '~> 7.1.0'
+gem 'puma', '~> 8.0.2'
 gem 'thin', '~> 2.0.1'
 
 gem 'pkg-config', '~> 1.6.5'
