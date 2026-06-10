@@ -14,7 +14,11 @@ ENVIRONMENT_FILE="$RESOURCES_DIR/environment-vars"
 set -a
 source $ENVIRONMENT_FILE
 set +a
-echo "source $ENVIRONMENT_FILE" > /home/ubuntu/.bash_profile
+{
+  echo "source $ENVIRONMENT_FILE"
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"'
+  echo 'eval "$(rbenv init - bash)"'
+} > /home/ubuntu/.bash_profile
 
 id -u patrick &>/dev/null || sudo useradd patrick
 
@@ -27,19 +31,24 @@ sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -yq
 sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yq
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+  autoconf \
   g++ \
   gcc \
+  git \
+  libffi-dev \
+  libgmp-dev \
   libpq-dev \
-  libyaml-dev \
+  libreadline-dev \
+  libssl-dev \
   libxml2-dev \
+  libyaml-dev \
   make \
   nginx \
   nodejs \
+  patch \
   software-properties-common \
-  ruby \
-  ruby-bundler \
-  ruby-dev  \
-  yarn
+  yarn \
+  zlib1g-dev
 sudo DEBIAN_FRONTEND=noninteractive apt-get remove certbot -yq
 sudo snap install --classic certbot
 sudo snap set certbot trust-plugin-with-root=ok
@@ -84,8 +93,7 @@ rm -rf "$SOURCE_DIR/log"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
 
-# ruby - small instances may need swap space for `bundle install`
-sudo gem install bundler
+# swap - small instances need it to compile ruby and native gems
 SWAPFILE=/swapfile
 if [ ! -f "$SWAPFILE" ]; then
   sudo fallocate -l 1G "$SWAPFILE"
@@ -93,6 +101,24 @@ if [ ! -f "$SWAPFILE" ]; then
   sudo mkswap "$SWAPFILE"
   sudo swapon "$SWAPFILE"
 fi
+
+# ruby - rbenv + ruby-build, pinned by .ruby-version
+export RBENV_ROOT="$HOME/.rbenv"
+if [[ ! -d "$RBENV_ROOT" ]]; then
+  git clone https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
+else
+  git -C "$RBENV_ROOT" pull --ff-only
+fi
+if [[ ! -d "$RBENV_ROOT/plugins/ruby-build" ]]; then
+  git clone https://github.com/rbenv/ruby-build.git "$RBENV_ROOT/plugins/ruby-build"
+else
+  git -C "$RBENV_ROOT/plugins/ruby-build" pull --ff-only
+fi
+export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init - bash)"
+rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
+
+gem update --system  # ships a matching default bundler
 bundle install
 
 # rails

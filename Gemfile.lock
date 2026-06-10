@@ -228,7 +228,7 @@ GEM
     zeitwerk (2.8.2)
 
 PLATFORMS
-  arm64-darwin-23
+  arm64-darwin-25
   ruby
 
 DEPENDENCIES
@@ -243,4 +243,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.5.14
+  4.0.14
