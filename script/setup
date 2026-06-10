@@ -123,10 +123,12 @@ export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init - bash)"
 # -j1: parallel cc1 processes OOM on a 1GB instance
 # TMPDIR: /tmp is a small tmpfs; the build tree needs >1GB, put it on disk
+# --disable-install-doc: rdoc/ri generation is slow and disk-hungry
+sudo rm -rf /var/tmp/ruby-build
 sudo install -d -o ubuntu /var/tmp/ruby-build
-TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" \
+TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" RUBY_CONFIGURE_OPTS="--disable-install-doc" \
   rbenv install --skip-existing "$(cat "$SOURCE_DIR/.ruby-version")"
-rm -rf /var/tmp/ruby-build
+sudo rm -rf /var/tmp/ruby-build
 
 gem update --system  # ships a matching default bundler
 bundle install
