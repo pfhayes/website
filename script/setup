@@ -110,8 +110,9 @@ if [[ "$(stat -c %s "$SWAPFILE" 2>/dev/null || echo 0)" -lt "$SWAP_BYTES" ]]; th
   sudo fallocate -l "$SWAP_BYTES" "$SWAPFILE"
   sudo chmod 600 "$SWAPFILE"
   sudo mkswap "$SWAPFILE"
-  sudo swapon "$SWAPFILE"
 fi
+grep -q "^$SWAPFILE " /etc/fstab || echo "$SWAPFILE none swap sw 0 0" | sudo tee -a /etc/fstab >/dev/null
+swapon --show=NAME --noheadings | grep -qx "$SWAPFILE" || sudo swapon "$SWAPFILE"
 
 # ruby - rbenv + ruby-build, pinned by .ruby-version
 export RBENV_ROOT="$HOME/.rbenv"
@@ -138,7 +139,7 @@ TMPDIR=/var/tmp/ruby-build MAKE_OPTS="-j1" RUBY_CONFIGURE_OPTS="--disable-instal
 sudo rm -rf /var/tmp/ruby-build
 rbenv rehash  # --skip-existing skips the rehash when the version is already built
 
-gem update --system  # ships a matching default bundler
+gem install bundler  # match the lockfile's bundler major version
 bundle install
 
 # rails
