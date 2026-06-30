@@ -3,6 +3,10 @@
 set -e
 set -o pipefail
 
+# Always run as the limited 'deploy' IAM user, never inherit an ambient
+# AWS_PROFILE (e.g. an interactive admin SSO session).
+export AWS_PROFILE=deploy
+
 SECURITY_GROUP="sg-aaa772d5"  # web
 DEFAULT_INSTANCE_TYPE="t4g.micro"
 DEFAULT_PUBKEY="$HOME/.ssh/id_ed25519.pub"
