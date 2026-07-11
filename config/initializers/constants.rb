@@ -8,6 +8,7 @@ module Links
   Facebook = "https://facebook.com/pfhayes"
   Foursquare = "https://foursquare.com/pfjhayes"
   Github = "https://github.com/pfhayes"
+  Hyperagent = "https://hyperagent.com/"
   Linkedin = "https://www.linkedin.com/in/pfjhayes"
   SigOpt = "https://www.intel.com/content/www/us/en/newsroom/news/sigopt-to-scale-ai-productivity-performance.html#gs.4bve5c"
   Twitter = "https://twitter.com/pfjhayes"
