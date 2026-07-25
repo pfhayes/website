@@ -65,6 +65,9 @@ sudo snap set system refresh.retain=2
 snap list --all | awk '/disabled/{print $1, $3}' | while read -r name rev; do
   sudo snap remove "$name" --revision="$rev"
 done
+# snapd keeps a copy of every downloaded snap here on top of the installed
+# ones; it is a download cache only, and grows larger than /var/lib/snapd/snaps
+sudo rm -rf /var/lib/snapd/cache/*
 
 # config files
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -100,6 +103,10 @@ sudo systemctl daemon-reload
 rm -rf "$SOURCE_DIR/log"
 sudo touch /var/log/patrick-web.log
 sudo chown patrick /var/log/patrick-web.log
+sudo mkdir -p /etc/systemd/journald.conf.d
+sudo install -T "$RESOURCES_DIR/journald.conf" /etc/systemd/journald.conf.d/patrick-web.conf
+sudo systemctl restart systemd-journald
+sudo journalctl --vacuum-size=100M  # apply the cap now, not at next rotation
 
 # swap - small instances need it to compile ruby and native gems;
 # resize if an older deploy created a smaller swapfile
