@@ -1,14 +1,23 @@
 <div class="resume_section">
 <p class="resume_section_heading">Work Experience</p>
   <%= render 'resume/entry',
-    :name => 'Senior Staff Software Engineer',
-    :organization => 'Airtable',
-    :start_date => '2023',
+    :name => 'Member of Technical Staff',
+    :organization => 'Hyperagent',
+    :start_date => '2026',
     :end_date => 'present',
     :show_bullets => true,
     :bullets => [
-      'Shipping <a href="https://hyperagent.com">Hyperagent</a>',
-      'Previously: Tech Lead for Airtable\'s Developer Infrastructure team',
+      'Founding team member of <a href="https://hyperagent.com">Hyperagent</a>',
+    ]
+  %>
+  <%= render 'resume/entry',
+    :name => 'Senior Staff Software Engineer',
+    :organization => 'Airtable',
+    :start_date => '2023',
+    :end_date => '2026',
+    :show_bullets => true,
+    :bullets => [
+      'Tech Lead for Airtable\'s Developer Infrastructure team',
     ]
   %>
   <%= render 'resume/entry',
