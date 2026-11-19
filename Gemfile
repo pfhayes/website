@@ -4,7 +4,7 @@ gem 'rails', '~> 8.1.1'
 gem 'sprockets-rails', '~> 3.5.2'
 
 gem 'terser', '~> 1.2.6'
-gem 'sassc-rails', '~> 2.1.2'
+gem 'dartsass-sprockets', '~> 3.2.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 8.0.2'
