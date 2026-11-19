@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+warn <<~MSG
+  🪦 thin is gone: this app runs on Puma now.
+
+  Start the dev server with:
+
+      bin/rails server            # http://localhost:3000
+      bin/rails server -p 4000    # another port
+MSG
+exit 1

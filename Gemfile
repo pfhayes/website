@@ -7,7 +7,11 @@ gem 'dartsass-sprockets', '~> 3.2.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 8.0.2'
-gem 'thin', '~> 2.0.1'
+
+group :development do
+  # `bundle exec thin` prints a reminder to use `bin/rails server` instead
+  gem 'thin-tombstone', path: 'vendor/thin-tombstone'
+end
 
 gem 'pkg-config', '~> 1.6.5'
 
