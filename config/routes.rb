@@ -18,5 +18,11 @@ Rails.application.routes.draw do
 
     # Nothing left, route to error page
     get 'badgateway' => 'application#render_502', :as => :badgateway
+
+    # Only drawn while script/generate_error_files snapshots the static error pages
+    if ENV['GENERATING_ERROR_PAGES']
+      get 'unprocessable' => 'application#render_422'
+      get 'servererror' => 'application#render_500'
+    end
     get '*wild' => 'application#render_404', :as => :error_404
 end

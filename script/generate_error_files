@@ -1,6 +1,61 @@
-#!/bin/zsh
+#!/usr/bin/env ruby
+# Regenerates the static error pages in public/ (404, 422, 500, 502).
+#
+# nginx serves 404.html and 502.html directly (502 is shown while the app is
+# down), and Rails falls back to public/422.html and 500.html when it can't
+# render. So each page is snapshotted from the running app with its CSS
+# inlined: they must not depend on fingerprinted assets, whose names change
+# whenever the stylesheets do.
+#
+# Run this after changing the layout, error view or stylesheets, then commit.
 
-pushd ~/dev/web/personal
-curl http://localhost:3000/bad/url/so/bad | sed 's/localhost:3000/patrickhay.es/g' >public/404.html
-curl http://localhost:3000/badgateway | sed 's/localhost:3000/patrickhay.es/g' >public/502.html
-popd
+require "net/http"
+
+ROOT = File.expand_path("..", __dir__)
+PORT = 3123
+HOST = "patrickhay.es" # so root_url in the header names the real site
+PAGES = {
+  404 => "/this-page-does-not-exist",
+  422 => "/unprocessable",
+  500 => "/servererror",
+  502 => "/badgateway",
+}
+
+Dir.chdir(ROOT)
+ENV.update(
+  "RAILS_ENV" => "production",
+  "SECRET_KEY_BASE_DUMMY" => "1",
+  "GENERATING_ERROR_PAGES" => "1",
+)
+
+system("bin/rails", "assets:precompile", out: File::NULL, exception: true)
+
+server = spawn("bundle", "exec", "puma", "-p", PORT.to_s, "-e", "production",
+               out: File::NULL, err: File::NULL)
+begin
+  http = Net::HTTP.new("127.0.0.1", PORT)
+  30.times do
+    break if (http.get("/", "Host" => HOST) rescue nil)
+    sleep 1
+  end
+
+  PAGES.each do |status, path|
+    response = http.get(path, "Host" => HOST)
+    unless response.code.to_i == status
+      abort "#{path}: expected #{status}, got #{response.code}"
+    end
+
+    html = response.body.gsub(%r{<link rel="stylesheet" href="/assets/([^"]+\.css)"(?: media="(\w+)")? />}) do
+      media = $2 ? %( media="#{$2}") : ""
+      css = File.read(File.join("public/assets", $1))
+      "<style#{media}>#{css}</style>"
+    end
+    abort "#{path}: still references /assets/ after inlining" if html.include?("/assets/")
+
+    File.write("public/#{status}.html", html)
+    puts "public/#{status}.html"
+  end
+ensure
+  Process.kill("TERM", server)
+  Process.wait(server)
+end
