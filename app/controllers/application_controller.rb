@@ -29,7 +29,14 @@ class ApplicationController < ActionController::Base
     render_error
   end
 
+  # The error page only exists as HTML. A URL naming another kind of file
+  # (e.g. a browser probing for /apple-touch-icon.png) gets just the status,
+  # rather than a MissingTemplate 500.
   def render_error
-    render template: 'home/error', :status => params[:error_code]
+    if params[:format].nil? || params[:format] == 'html'
+      render template: 'home/error', formats: :html, :status => params[:error_code]
+    else
+      head params[:error_code]
+    end
   end
 end
