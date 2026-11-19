@@ -1,7 +1,4 @@
 require "active_support/core_ext/integer/time"
-require "terser"
-
-Sprockets.register_compressor("application/javascript", :terser, Terser::Compressor)
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -23,7 +20,6 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
-  config.assets.js_compressor = :terser
   config.assets.css_compressor = :sass
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.

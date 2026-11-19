@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '~> 8.1.1'
 gem 'sprockets-rails', '~> 3.5.2'
 
-gem 'terser', '~> 1.2.6'
 gem 'dartsass-sprockets', '~> 3.2.1'
 
 # Use Puma as the app server

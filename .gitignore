@@ -18,9 +18,5 @@ public/assets/*
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-/yarn-error.log
-yarn.lock
-
 .byebug_history
 resources/secret-key

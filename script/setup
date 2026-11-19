@@ -22,10 +22,13 @@ set +a
 
 id -u patrick &>/dev/null || sudo useradd patrick
 
-# Configure sources
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --batch --yes --dearmor -o /etc/apt/keyrings/yarn.gpg
-sudo install -T "$RESOURCES_DIR/yarn.list" /etc/apt/sources.list.d/yarn.list
+# Node/Yarn are no longer used; clear them off hosts provisioned before that
+sudo rm -f /etc/apt/sources.list.d/yarn.list /etc/apt/keyrings/yarn.gpg
+for pkg in yarn nodejs; do
+  if dpkg -s "$pkg" &>/dev/null; then
+    sudo DEBIAN_FRONTEND=noninteractive apt-get remove -yq "$pkg"
+  fi
+done
 
 # Install packages
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -yq
@@ -44,10 +47,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   libyaml-dev \
   make \
   nginx \
-  nodejs \
   patch \
   software-properties-common \
-  yarn \
   zlib1g-dev
 sudo DEBIAN_FRONTEND=noninteractive apt-get remove certbot -yq
 sudo snap install --classic certbot
