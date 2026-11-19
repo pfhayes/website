@@ -1,7 +1,7 @@
 MY_EMAIL = 'p@phay.es'
 HOSTS = ['patrickhay.es', 'pfhay.es', 'phay.es']
 CANON_HOST = 'patrickhay.es'
-CANON_URL = 'http://' + CANON_HOST
+CANON_URL = 'https://' + CANON_HOST
 
 module Links
   Airtable = "https://airtable.com/"
